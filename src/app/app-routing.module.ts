@@ -14,6 +14,11 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'coupons',
+    loadChildren: () => import('./features/coupons/coupons.module').then(m => m.CouponsModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'profiles',
     loadChildren: () => import('./features/profiles/profiles.module').then(m => m.ProfilesModule),
     canActivate: [AuthGuard]

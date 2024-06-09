@@ -11,5 +11,6 @@ export class EnumModel {
     roles: EnumModel[] | undefined;
     genderTypes: EnumModel[] | undefined;
     fileTypes: EnumModel[] | undefined;
+    couponCalculateTypes: EnumModel[] | undefined;
   }
   

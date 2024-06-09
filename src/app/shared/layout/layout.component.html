@@ -9,7 +9,7 @@
 
     <a class="navbar-brand" [routerLink]="['/']" matTooltip="Home">
       <h1>
-        Matrimonial
+      G20
       </h1>
     </a>
 
@@ -66,6 +66,12 @@
             dashboard
           </mat-icon>
           <p mat-line> Dashboard </p>
+        </a>
+        <a mat-list-item [routerLink]="['/coupons/list']" routerLinkActive="active">
+          <mat-icon mat-list-icon>
+            Coupon
+          </mat-icon>
+          <p mat-line> Coupons </p>
         </a>
         <a mat-list-item [routerLink]="['/profiles']" routerLinkActive="active">
           <mat-icon mat-list-icon>
