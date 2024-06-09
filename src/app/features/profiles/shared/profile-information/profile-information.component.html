@@ -1,0 +1,62 @@
+<div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="space-around ">
+    <form [formGroup]="form">
+        <div fxLayout="row" fxLayoutGap="10px">
+            <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="First Name" formControlName="firstName">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Middel Name</mat-label>
+                <input matInput placeholder="Middel Name" formControlName="middleName">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Last Name" formControlName="lastName">
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+            <mat-label>Gender</mat-label>
+            <mat-button-toggle-group *ngIf="genderTypes" multiple=false formControlName="sex">
+                <mat-button-toggle *ngFor="let item of genderTypes;" [value]="item.value">
+                    {{item.key}}</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+            <mat-form-field appearance="outline">
+                <mat-label>Email ID</mat-label>
+                <input matInput placeholder="email Id" formControlName="email">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Phone No</mat-label>
+                <input matInput placeholder="Phone No" formControlName="phoneNo">
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+            <mat-form-field appearance="outline">
+                <mat-label>Alternate Email ID</mat-label>
+                <input matInput placeholder="Alternate Email Id" formControlName="alternateEmail">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Alternate Phone No</mat-label>
+                <input matInput placeholder="AlternatePhone No" formControlName="alternatePhoneNo">
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+            <mat-form-field appearance="outline">
+                <mat-label>Langauge</mat-label>
+                <input matInput placeholder="Langauge" formControlName="langauge">
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+                <mat-label>Upload Bio-Data</mat-label>
+                <app-mat-file-Upload (uploadFileEvent)="uploadFile($event)"></app-mat-file-Upload>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+            <mat-form-field appearance="outline">
+                <mat-label>Other Information</mat-label>
+                <input matInput placeholder="Other Information" formControlName="otherInformation">
+            </mat-form-field>
+        </div>
+    </form>
+</div>

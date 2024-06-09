@@ -1,0 +1,50 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+    <div fxFlex="95%">
+        <mat-card>
+            <mat-card-content>
+                <h2>States</h2>
+                <div fxLayout="row"  fxLayout.sm="column" fxLayout.xs="column">
+                    <div fxLayout="row" fxFlex="35%" fxFlex.sm="95%" fxFlex.xs="95%" fxLayoutGap="10px"
+                        fxLayoutAlign="start center">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Filter</mat-label>
+                            <input matInput placeholder="Name" #input [(ngModel)]="searchModel.name">
+                        </mat-form-field>
+                        <button mat-raised-button color="primary" (click)="applyFilter()">Apply Filter</button>
+                    </div>
+                    <div fxLayout="row" fxFlex="65%" fxFlex.sm="95%" fxFlex.xs="950%" fxLayoutAlign="end center">
+                        <button mat-raised-button color="primary" (click)="addNew()">Add New</button>
+                    </div>
+
+                </div>
+                    <table mat-table [dataSource]="dataSource" matSort>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="Name">
+                            <th mat-header-cell *matHeaderCellDef> Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Actions">
+                            <th mat-header-cell *matHeaderCellDef> Actions </th>
+                            <td mat-cell *matCellDef="let row">
+                                <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary"
+                                    (click)="edit(row)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn"
+                                    (click)="delete(row)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <app-custom-paginator [paggerModel]="paggerModel"
+                        (changePage)="ChangePage($event)"></app-custom-paginator>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

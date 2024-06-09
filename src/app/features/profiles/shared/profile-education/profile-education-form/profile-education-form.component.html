@@ -1,0 +1,72 @@
+<div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-between">
+    <h2 fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">{{isEdit?"Edit":"Create"}} Education</h2>
+    <form [formGroup]="form">
+        <div fxLayout="row" fxLayoutGap="20px">
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" formControlName="name">
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxLayout="column" fxFlex="100">
+                <mat-form-field appearance="outline">
+                    <mat-label>degree</mat-label>
+                    <input matInput placeholder="Degree" formControlName="degree">
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <mat-form-field appearance="outline">
+                <mat-label>Start Month</mat-label>
+                <input matInput placeholder="Start Month" formControlName="startMonth">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Start Year</mat-label>
+                <input matInput placeholder="Start Year" formControlName="startYear">
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <mat-form-field appearance="outline">
+                <mat-label>End Month</mat-label>
+                <input matInput placeholder="Start Month" formControlName="endMonth">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>End Year</mat-label>
+                <input matInput placeholder="End Year" formControlName="endYear">
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <mat-checkbox class="example-margin" formControlName="isPresent">Is Present</mat-checkbox>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxLayout="column" fxFlex="100">
+                <mat-form-field appearance="outline">
+                    <mat-label>Grade</mat-label>
+                    <input matInput placeholder="Grade" formControlName="grade">
+                </mat-form-field>
+            </div>
+        </div>
+        
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxLayout="column" fxFlex="100">
+                <mat-form-field appearance="outline">
+                    <mat-label>Percentage</mat-label>
+                    <input matInput placeholder="Percentage" formControlName="percentage">
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxLayout="column" fxFlex="100">
+                <mat-form-field appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <input matInput placeholder="Description" formControlName="description">
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="20px">
+            <button mat-raised-button color="basic" (click)="onCancel()">Cancel</button>
+            <button mat-raised-button color="primary" (click)="onSubmit()"> {{isEdit?"Edit":"Update"}}</button>
+        </div>
+    </form>
+</div>

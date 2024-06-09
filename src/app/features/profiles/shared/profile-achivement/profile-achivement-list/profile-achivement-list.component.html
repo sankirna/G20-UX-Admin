@@ -1,0 +1,37 @@
+<div class="content" *ngIf="forms  && forms.controls">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let form of forms.controls; let i = index">
+      <mat-card class="mat-elevation-z4">
+        <!-- <mat-card-header>
+          <mat-card-title></mat-card-title>
+        </mat-card-header> -->
+        <mat-card-content>
+          <mat-card-content>
+            <div> <span>Name :</span> {{form.get("name")?.getRawValue()}} </div>
+            <div> <span>Year :</span> {{form.get("year")?.getRawValue()}} </div>
+            <div> <span>Description :</span> {{form.get("description")?.getRawValue()}} </div>
+          </mat-card-content>
+        </mat-card-content>
+        <mat-card-actions fxLayoutAlign="end end">
+          <button mat-raised-button color="warn" (click)="delete(i,form)">Delete</button>
+          <button mat-raised-button color="primary" (click)="edit(i,form)">Edit</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<br />
+<div class="content">
+  <div fxLayout="grow" fxLayoutGap="10px" fxLayoutAlign="center center">
+    <button mat-raised-button color="primary" (click)="add()">Add New</button>
+  </div>
+</div>
+<div class="content">
+  <div fxLayout="grow" fxLayoutGap="10px" fxLayoutAlign="center center">
+    <!-- Data Example -->
+    <ng-template #dataDialogTemplate>
+      <app-profile-achivement-form *ngIf="isShowForm" [form]="requestForm" [isEdit]="isEdit"
+        (cancelEvent)="cancelEvent($event)" (submitEvent)="submitEvent($event)"></app-profile-achivement-form>
+    </ng-template>
+  </div>
+</div>

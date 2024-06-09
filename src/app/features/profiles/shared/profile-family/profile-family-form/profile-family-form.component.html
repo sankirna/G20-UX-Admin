@@ -1,0 +1,44 @@
+<div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-between">
+    <h2 fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">{{isEdit?"Edit":"Create"}} Family</h2>
+    <form [formGroup]="form">
+        <div fxLayout="row" fxLayoutGap="20px">
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" formControlName="name">
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" formControlName="email">
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <mat-form-field appearance="outline">
+                <mat-label>Phone No</mat-label>
+                <input matInput placeholder="phoneNo" formControlName="phoneNo">
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxLayout="column" fxFlex="100">
+                <mat-label>Family Type</mat-label>
+                <mat-button-toggle-group *ngIf="relationTypes" multiple=false formControlName="relationTypeId">
+                    <mat-button-toggle *ngFor="let item of relationTypes;" [value]="item.value">
+                        {{item.key}}</mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxLayout="column" fxFlex="100">
+                <mat-form-field appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <input matInput placeholder="Description" formControlName="description">
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="20px">
+            <button mat-raised-button color="basic" (click)="onCancel()">Cancel</button>
+            <button mat-raised-button color="primary" (click)="onSubmit()"> {{isEdit?"Edit":"Update"}}</button>
+        </div>
+    </form>
+</div>
