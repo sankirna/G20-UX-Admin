@@ -19,6 +19,11 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'subcategories',
+    loadChildren: () => import('./features/sub-categories/sub-categories.module').then(m => m.SubCategoriesModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'coupons',
     loadChildren: () => import('./features/coupons/coupons.module').then(m => m.CouponsModule),
     canActivate: [AuthGuard]
