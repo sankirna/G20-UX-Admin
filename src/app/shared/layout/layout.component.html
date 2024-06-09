@@ -67,6 +67,12 @@
           </mat-icon>
           <p mat-line> Dashboard </p>
         </a>
+        <a mat-list-item [routerLink]="['/categories/list']" routerLinkActive="active">
+          <mat-icon mat-list-icon>
+            Category
+          </mat-icon>
+          <p mat-line> Categories </p>
+        </a>
         <a mat-list-item [routerLink]="['/coupons/list']" routerLinkActive="active">
           <mat-icon mat-list-icon>
             Coupon
