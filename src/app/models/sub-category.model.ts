@@ -13,6 +13,7 @@ export class SubCategoryModel {
   name: string | undefined;
   description: string | undefined;
   categoryId: number | undefined= 0;
+  subCategoryName: string | undefined;
 }
 
 export class SubCategoryListModel extends BasePagedListModel<SubCategoryModel> {

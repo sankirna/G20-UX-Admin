@@ -13,12 +13,6 @@
               <input matInput placeholder="Name" formControlName="name">
             </mat-form-field>
           </div>
-          <div fxLayout="row" fxLayoutAlign="start">
-            <mat-form-field appearance="outline">
-              <mat-label>Description</mat-label><textarea matInput placeholder="Description"
-                formControlName="description"></textarea>
-            </mat-form-field>
-          </div>
           <div fxLayout="row" fxLayoutAlign="start" *ngIf="categories.length > 0">
             <mat-form-field appearance="outline">
               <mat-label>Category</mat-label>
@@ -29,6 +23,13 @@
             </mat-form-field>
           </div>
 
+          <div fxLayout="row" fxLayoutAlign="start">
+            <mat-form-field appearance="outline">
+              <mat-label>Description</mat-label><textarea matInput placeholder="Description"
+                formControlName="description"></textarea>
+            </mat-form-field>
+          </div>
+         
           <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
             <button mat-raised-button color="warn" (click)="gotoList()">Cancel</button>
             <button mat-raised-button color="primary" (click)="onSubmit()">{{isEdit?'Update':'Create'}}</button>

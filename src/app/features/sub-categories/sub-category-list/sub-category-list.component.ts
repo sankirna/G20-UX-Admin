@@ -20,7 +20,7 @@ export class SubCategoryListComponent implements OnInit {
   searchModel: SubCategorySearchModel = new SubCategorySearchModel();
   paggerModel: PaggerModel = new PaggerModel();
   list: SubCategoryModel[] = [];
-  displayedColumns: string[] = ['Name' ,'Actions'];
+  displayedColumns: string[] = ['Name' ,'ParentCategoryName', 'Actions'];
   dataSource: MatTableDataSource<SubCategoryModel>;
 
   constructor(private categoryService: CategoryService
