@@ -13,6 +13,7 @@ export class CouponModel {
   code: string | undefined;
   amount: number | undefined = 0;
   typeId: number | undefined = 0;
+  typeValue: string | undefined ;
   expirationDate: string|undefined;
 }
 

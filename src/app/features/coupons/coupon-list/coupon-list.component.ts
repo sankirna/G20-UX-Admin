@@ -18,7 +18,7 @@ export class CouponListComponent implements OnInit {
   searchModel: CouponSearchModel = new CouponSearchModel();
   paggerModel: PaggerModel = new PaggerModel();
   list: CouponModel[] = [];
-  displayedColumns: string[] = ['Code','Actions'];
+  displayedColumns: string[] = ['Code', 'Type', 'Amount','ExpirationDate', 'Actions'];
   dataSource: MatTableDataSource<CouponModel>;
 
   constructor(private couponService: CouponService
