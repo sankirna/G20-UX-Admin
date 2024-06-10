@@ -15,6 +15,11 @@ const appRoutes: Routes = [
   },
   {
     path: 'categories',
+    loadChildren: () => import('./features/users/users.module').then(m => m.UsersModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'categories',
     loadChildren: () => import('./features/categories/categories.module').then(m => m.CategoriesModule),
     canActivate: [AuthGuard]
   },

@@ -67,6 +67,12 @@
           </mat-icon>
           <p mat-line> Dashboard </p>
         </a>
+        <a mat-list-item [routerLink]="['/users/list']" routerLinkActive="active">
+          <mat-icon mat-list-icon>
+            people
+          </mat-icon>
+          <p mat-line> users </p>
+        </a>
         <a mat-list-item [routerLink]="['/categories/list']" routerLinkActive="active">
           <mat-icon mat-list-icon>
             Category
