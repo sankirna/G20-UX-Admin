@@ -1,5 +1,5 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center none">
-  <div fxFlex="95%">
+  <div fxFlex="100%">
     <mat-card>
       <mat-card-content>
         <h2>Coupon {{isEdit?'Edit':'Create'}}</h2>
@@ -7,14 +7,14 @@
           <div fxLayout="row" fxLayoutAlign="end end">
             <button mat-raised-button color="primary" (click)="gotoList()">List</button>
           </div>
-          <div fxLayout="row" fxLayoutAlign="start">
+          <div fxLayout="row" fxLayoutAlign="start" >
             <mat-form-field appearance="outline">
               <mat-label>Code</mat-label>
               <input matInput placeholder="Code" formControlName="code">
             </mat-form-field>
           </div>
           <div fxLayout="row" fxLayoutGap="20px">
-            <div fxLayout="column" fxFlex="100">
+            <div fxLayout="column" >
               <mat-label>Type</mat-label>
               <mat-button-toggle-group *ngIf="couponCalculateTypes" multiple=false formControlName="typeId">
                 <mat-button-toggle *ngFor="let item of couponCalculateTypes;" [value]="item.value">
