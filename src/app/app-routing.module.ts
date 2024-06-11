@@ -89,6 +89,11 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'venues',
+    loadChildren: () => import('./features/venues/venues.module').then(m => m.VenuesModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: '**',
     redirectTo: 'dashboard',
     pathMatch: 'full'
