@@ -29,7 +29,7 @@
                 </mat-select>
               </mat-form-field>
             </div>
-            <div fxLayout="column" fxFlex="33" >
+            <div fxLayout="column" fxFlex="33">
               <mat-form-field appearance="outline">
                 <mat-label>State</mat-label>
                 <mat-select formControlName="stateId" (selectionChange)="onStateChange($event.value)">
@@ -37,7 +37,7 @@
                 </mat-select>
               </mat-form-field>
             </div>
-            <div fxLayout="column" fxFlex="33" >
+            <div fxLayout="column" fxFlex="33">
               <mat-form-field appearance="outline">
                 <mat-label>City</mat-label>
                 <mat-select formControlName="cityId">
@@ -45,6 +45,11 @@
                 </mat-select>
               </mat-form-field>
             </div>
+           
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <mat-label>logo</mat-label>
+            <app-mat-file-Upload (uploadFileEvent)="uploadFile($event)"></app-mat-file-Upload>
           </div>
           <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
             <button mat-raised-button color="warn" (click)="gotoList()">Cancel</button>

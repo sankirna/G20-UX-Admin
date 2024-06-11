@@ -4,11 +4,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CityService } from 'src/app/core/services/city.service';
 import { CommonService } from 'src/app/core/services/common.service';
 import { CountryService } from 'src/app/core/services/country.service';
+import { FileService } from 'src/app/core/services/file.service';
 import { StateService } from 'src/app/core/services/state.service';
 import { TeamService } from 'src/app/core/services/team.service';
 import { CityModel, CitySearchModel } from 'src/app/models/city.model';
 import { EnumModel } from 'src/app/models/common.model';
 import { CountryModel, CountrySearchModel } from 'src/app/models/country.model';
+import { FileUploadRequestModel } from 'src/app/models/file.model';
 import { StateModel, StateSearchModel } from 'src/app/models/state.model';
 import { TeamModel } from 'src/app/models/team.model';
 
@@ -33,6 +35,7 @@ export class TeamCreateComponent implements OnInit {
     , private countryService: CountryService
     , private stateService: StateService
     , private cityService: CityService
+    , public fileService: FileService
     , private fb: FormBuilder) {
     this.buildForm();
   }
@@ -49,6 +52,10 @@ export class TeamCreateComponent implements OnInit {
     }else{
       this.buildForm();
     }
+  }
+
+  get logoFileDataForm() {
+    return this.form.get("logo") as FormGroup;
   }
 
 
@@ -114,14 +121,20 @@ export class TeamCreateComponent implements OnInit {
       this.model= new TeamModel();
       this.model.id=0;
     }
+      
+    if(!this.model.logo){
+      this.model.logo=new FileUploadRequestModel();
+    }
     this.form = this.fb.group({
       id: [this.model.id],
       name: [this.model.name, Validators.required],
       shortName: [this.model.shortName],
       countryId: [this.model.countryId, Validators.required],
       stateId: [this.model.stateId],
-      cityId: [this.model.cityId]
+      cityId: [this.model.cityId],
+      
     });
+    this.form.addControl("logo", this.fileService.getForm(this.model.logo));
 
     if(this.model.countryId && this.model.countryId>0){
       this.loadStates(this.model.countryId);
@@ -134,6 +147,12 @@ export class TeamCreateComponent implements OnInit {
 
   isValid(): boolean {
     return this.form.valid;
+  }
+
+  uploadFile(event: FileUploadRequestModel){
+    debugger
+    this.logoFileDataForm.controls["fileName"].setValue(event.fileName);
+    this.logoFileDataForm.controls["fileAsBase64"].setValue(event.fileAsBase64);
   }
 
   getData() {

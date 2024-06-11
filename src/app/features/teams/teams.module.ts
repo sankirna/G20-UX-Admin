@@ -16,6 +16,7 @@ import { TeamService } from 'src/app/core/services/team.service';
 import { CountryService } from 'src/app/core/services/country.service';
 import { StateService } from 'src/app/core/services/state.service';
 import { CityService } from 'src/app/core/services/city.service';
+import { FileService } from 'src/app/core/services/file.service';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { CityService } from 'src/app/core/services/city.service';
     TeamService,
     CountryService,
     StateService,
-    CityService
+    CityService,
+    FileService
   ]
 })
 export class TeamsModule { }
