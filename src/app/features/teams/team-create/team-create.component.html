@@ -29,7 +29,7 @@
                 </mat-select>
               </mat-form-field>
             </div>
-            <div fxLayout="column" fxFlex="33" *ngIf="states.length > 0">
+            <div fxLayout="column" fxFlex="33" >
               <mat-form-field appearance="outline">
                 <mat-label>State</mat-label>
                 <mat-select formControlName="stateId" (selectionChange)="onStateChange($event.value)">
@@ -37,7 +37,7 @@
                 </mat-select>
               </mat-form-field>
             </div>
-            <div fxLayout="column" fxFlex="33" *ngIf="cities.length > 0">
+            <div fxLayout="column" fxFlex="33" >
               <mat-form-field appearance="outline">
                 <mat-label>City</mat-label>
                 <mat-select formControlName="cityId">

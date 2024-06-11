@@ -122,6 +122,14 @@ export class TeamCreateComponent implements OnInit {
       stateId: [this.model.stateId],
       cityId: [this.model.cityId]
     });
+
+    if(this.model.countryId && this.model.countryId>0){
+      this.loadStates(this.model.countryId);
+    }
+
+    if(this.model.stateId && this.model.stateId>0){
+      this.loadCities(this.model.stateId);
+    }
   }
 
   isValid(): boolean {
