@@ -133,6 +133,7 @@ export class TeamCreateComponent implements OnInit {
       countryId: [this.model.countryId, Validators.required],
       stateId: [this.model.stateId],
       cityId: [this.model.cityId],
+      color: [this.model.color],
     });
     
     this.form.addControl("logo", this.fileService.getForm(this.model.logo));
