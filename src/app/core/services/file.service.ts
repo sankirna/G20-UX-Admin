@@ -30,6 +30,7 @@ export class FileService {
 
     getForm(model: FileUploadRequestModel): FormGroup {
         let form: FormGroup = this.fb.group({
+            id: [model.id],
             fileName: [model.fileName],
             fileSize: [model.fileSize],
             fileType: [model.fileType],
