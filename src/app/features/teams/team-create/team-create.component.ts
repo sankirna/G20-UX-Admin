@@ -125,6 +125,7 @@ export class TeamCreateComponent implements OnInit {
       
     if(!this.model.logo){
       this.model.logo=new FileUploadRequestModel();
+      this.model.logo.fileType=1;
     }
     this.form = this.fb.group({
       id: [this.model.id],
@@ -179,7 +180,7 @@ export class TeamCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger
+    
     if (this.isValid()) {
       this.model = <TeamModel>this.form.getRawValue();
       if(!this.isEdit){

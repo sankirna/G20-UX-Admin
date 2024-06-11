@@ -86,20 +86,14 @@ export class FileUploadComponent {
         this.files.push(files[i]);
         let fileModel: FileUploadRequestModel = new FileUploadRequestModel();
         fileModel.fileName = file.name;
-        // fileModel.fileSize = file.size.toString();
-        // fileModel.fileType = file.type;
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
           if (reader && reader.result){
             fileModel.fileAsBase64 = reader.result.toString();
             this.uploadFileEvent.emit(fileModel);
-          // this.fileService.Upload(fileModel).subscribe(resp => {
-          //   debugger
-          //});
            }
         }
-        //}
       }
     }
   }
