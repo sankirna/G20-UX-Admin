@@ -1,0 +1,35 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+  <div fxFlex="100%">
+    <mat-card>
+      <mat-card-content>
+        <h2>TicketCategory {{isEdit?'Edit':'Create'}}</h2>
+        <form [formGroup]="form">
+          <div fxLayout="row" fxLayoutAlign="end end">
+            <button mat-raised-button color="primary" (click)="gotoList()">List</button>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start">
+            <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="Name" formControlName="name">
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start">
+            <mat-form-field appearance="outline">
+              <mat-label>Description</mat-label>
+              <input matInput placeholder="Description" formControlName="description">
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <mat-label>File</mat-label>
+            <app-mat-file-Upload [files]="files" (uploadFileEvent)="uploadFile($event)" (removeFileEvent)="removeFile($event)"></app-mat-file-Upload>
+          </div>
+          <br>
+          <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+            <button mat-raised-button color="warn" (click)="gotoList()">Cancel</button>
+            <button mat-raised-button color="primary"  (click)="onSubmit()">{{isEdit?'Update':'Create'}}</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

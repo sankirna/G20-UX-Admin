@@ -24,6 +24,11 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'ticketcategories',
+    loadChildren: () => import('./features/ticket-categories/ticket-categories.module').then(m => m.TicketCategoriesModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'categories',
     loadChildren: () => import('./features/categories/categories.module').then(m => m.CategoriesModule),
     canActivate: [AuthGuard]
