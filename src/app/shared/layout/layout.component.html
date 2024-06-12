@@ -71,31 +71,32 @@
           <mat-icon mat-list-icon>
             people
           </mat-icon>
-          <p mat-line> users </p>
+          <p mat-line> Users </p>
+        </a>
+        <a mat-list-item [routerLink]="['/categories/list']" routerLinkActive="active">
+          <mat-icon mat-list-icon>
+            Product Category
+          </mat-icon>
+          <p mat-line> Product Categories </p>
         </a>
         <a mat-list-item [routerLink]="['/venues']" routerLinkActive="active">
           <mat-icon mat-list-icon>
-            dashboard
+            Venue
           </mat-icon>
           <p mat-line> Venue </p>
         </a>
         <a mat-list-item [routerLink]="['/teams/list']" routerLinkActive="active">
           <mat-icon mat-list-icon>
-            team
+            people
           </mat-icon>
           <p mat-line> Teams </p>
         </a>
-        <a mat-list-item [routerLink]="['/categories/list']" routerLinkActive="active">
-          <mat-icon mat-list-icon>
-            Category
-          </mat-icon>
-          <p mat-line> Categories </p>
-        </a>
+       
         <a mat-list-item [routerLink]="['/subcategories/list']" routerLinkActive="active">
           <mat-icon mat-list-icon>
-            Sub-Category
+            Ticket-Category
           </mat-icon>
-          <p mat-line> Sub-Categories </p>
+          <p mat-line> Ticket Categories </p>
         </a>
         <a mat-list-item [routerLink]="['/coupons/list']" routerLinkActive="active">
           <mat-icon mat-list-icon>
@@ -105,11 +106,11 @@
         </a>
         <a mat-list-item [routerLink]="['/countries/list']" routerLinkActive="active">
           <mat-icon mat-list-icon>
-            contry
+            Coupon
           </mat-icon>
           <p mat-line> Countries </p>
         </a>
-        <a mat-list-item [routerLink]="['/states/list']" routerLinkActive="active">
+        <!-- <a mat-list-item [routerLink]="['/states/list']" routerLinkActive="active">
           <mat-icon mat-list-icon>
             state
           </mat-icon>
@@ -126,7 +127,7 @@
             people
           </mat-icon>
           <p mat-line> Users </p>
-        </a>
+        </a> 
 
         <a mat-list-item [routerLink]="['/account/profile']">
           <mat-icon mat-list-icon>person</mat-icon>
@@ -136,9 +137,9 @@
         <a mat-list-item [routerLink]="['/auth/login']">
           <mat-icon mat-list-icon>exit_to_app</mat-icon>
           <p mat-line> Log out </p>
-        </a>
+        </a>-->
 
-        <mat-divider></mat-divider>
+        <!-- <mat-divider></mat-divider>
 
         <h3 mat-subheader>Resources</h3>
 
@@ -167,7 +168,7 @@
             info_outline
           </mat-icon>
           <p mat-line> About </p>
-        </a>
+        </a> -->
       </mat-nav-list>
 
     </mat-sidenav>
