@@ -9,6 +9,7 @@ import { VenuesRoutingModule } from './venues-routing.module';
 import { VenueService } from 'src/app/core/services/venue.service';
 import { FileService } from 'src/app/core/services/file.service';
 import { VenueTicketCategoryListComponent } from './shared/venue-ticket-category-list/venue-ticket-category-list.component';
+import { TicketCategoryService } from 'src/app/core/services/ticket-category.service';
 
 
 
@@ -28,7 +29,8 @@ import { VenueTicketCategoryListComponent } from './shared/venue-ticket-category
   ],
   providers: [
     VenueService,
-    FileService
+    FileService,
+    TicketCategoryService
   ]
 })
 export class VenuesModule { }

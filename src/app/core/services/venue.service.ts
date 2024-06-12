@@ -6,6 +6,7 @@ import { VenueTicketCategoryMapModel } from 'src/app/models/venue-ticket-categor
 import { VenueModel, VenueSearchModel } from 'src/app/models/venue.model';
 import { FileService } from './file.service';
 import { FileUploadRequestModel } from 'src/app/models/file.model';
+import { TicketCategoryModel } from 'src/app/models/ticket-category.model';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,22 @@ export class VenueService {
     return form;
   }
 
+  getVenueTicketCategoryMapModelFormFromTicketCategory(model: TicketCategoryModel): FormGroup {
+    let form: FormGroup = this.fb.group({
+      id: [0],
+      venueId: [0],
+      ticketCategoryId: [model.id],
+      ticketCategoryName: [model.name],
+      capacity: [0],
+      amount: [0],
+    });
+    if (!model.file) {
+      model.file = new FileUploadRequestModel();
+    }
+    form.addControl("file", this.fileService.getForm(model.file));
+    return form;
+  }
+
   getVenueTicketCategoryMapModelForm(model: VenueTicketCategoryMapModel): FormGroup {
     let form: FormGroup = this.fb.group({
       id: [model.id],
@@ -69,6 +86,5 @@ export class VenueService {
     form.addControl("file", this.fileService.getForm(model.file));
     return form;
   }
-
 
 }

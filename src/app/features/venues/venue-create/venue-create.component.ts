@@ -8,13 +8,15 @@ import { CountryModel, CountrySearchModel } from 'src/app/models/country.model';
 import { VenueTicketCategoryMapModel } from 'src/app/models/venue-ticket-category-map.model';
 import { VenueModel } from 'src/app/models/venue.model';
 import * as _ from 'lodash';
+import { TicketCategoryModel, TicketCategorySearchModel } from 'src/app/models/ticket-category.model';
+import { TicketCategoryService } from 'src/app/core/services/ticket-category.service';
 
 @Component({
   selector: 'app-venue-create',
   templateUrl: './venue-create.component.html',
   styleUrls: ['./venue-create.component.css']
 })
-export class VenueCreateComponent implements OnInit{
+export class VenueCreateComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   model: VenueModel | undefined;
   countries: CountryModel[] = [];
@@ -25,11 +27,11 @@ export class VenueCreateComponent implements OnInit{
     private router: Router
     , private route: ActivatedRoute
     , private countryService: CountryService
+    , private ticketCategoryService: TicketCategoryService
     , private venueService: VenueService
     , private commonService: CommonService
     , private fb: FormBuilder) {
-    
-    this.buildForm();
+      this.buildForm();
   }
 
   get isEdit(): boolean {
@@ -56,24 +58,27 @@ export class VenueCreateComponent implements OnInit{
       this.model = new VenueModel();
       this.model.id = 0;
     }
-    // this.form = this.fb.group({
-    //   id: [this.model.id],
-    //   stadiumName: [this.model.stadiumName, Validators.required],
-    //   location: [this.model.location],
-    //   capacity: [this.model.capacity],
-    //   countryId: [this.model.countryId, Validators.required],
-    // });
-    this.form= this.venueService.getVenueModelForm(this.model);
-    if(this.isEdit){
+    this.form = this.venueService.getVenueModelForm(this.model);
+    if (this.isEdit) {
       this.buildVenueTicketCategoryMapModelForm(this.model.venueTicketCategories);
+    } else {
+      this.loadTicketCategories();
     }
   }
 
   buildVenueTicketCategoryMapModelForm(venueTicketCategoryMapModels: VenueTicketCategoryMapModel[]) {
     var self = this;
     _.forEach(venueTicketCategoryMapModels, function (value, key) {
-      let addressForm: FormGroup = self.venueService.getVenueTicketCategoryMapModelForm(value);
-      self.venueTicketCategoriesForm.push(addressForm);
+      let venueTicketCategoryMapForm: FormGroup = self.venueService.getVenueTicketCategoryMapModelForm(value);
+      self.venueTicketCategoriesForm.push(venueTicketCategoryMapForm);
+    });
+  }
+
+  buildVenueTicketCategoryMapModelFormFromTicketCategory(ticketCategoryModels: TicketCategoryModel[]) {
+    var self = this;
+    _.forEach(ticketCategoryModels, function (value, key) {
+      let venueTicketCategoryMapForm: FormGroup = self.venueService.getVenueTicketCategoryMapModelFormFromTicketCategory(value);
+      self.venueTicketCategoriesForm.push(venueTicketCategoryMapForm);
     });
   }
 
@@ -84,6 +89,17 @@ export class VenueCreateComponent implements OnInit{
     this.countryService.list(countrySearchModel).subscribe(data => {
       if (data.data) {
         this.countries = data.data;
+      }
+    });
+  }
+
+  loadTicketCategories() {
+    let searchModel: TicketCategorySearchModel = new TicketCategorySearchModel();
+    searchModel.length = 10000;
+    searchModel.start = 0;
+    this.ticketCategoryService.list(searchModel).subscribe(data => {
+      if (data.data) {
+        this.buildVenueTicketCategoryMapModelFormFromTicketCategory(data.data);
       }
     });
   }
@@ -105,7 +121,7 @@ export class VenueCreateComponent implements OnInit{
   }
 
   onSubmit() {
-    
+
     if (this.isValid()) {
       this.model = <VenueModel>this.form.getRawValue();
       if (!this.isEdit) {

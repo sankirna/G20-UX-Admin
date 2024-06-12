@@ -3,7 +3,7 @@
         <mat-card>
             <mat-card-content>
                 <h2>Venue {{isEdit?'Edit':'Create'}}</h2>
-                <form [formGroup]="form">
+                <form *ngIf="form" [formGroup]="form">
                     <div fxLayout="row" fxLayoutAlign="end end">
                         <button mat-raised-button color="primary" (click)="gotoList()">List</button>
                     </div>
@@ -35,7 +35,7 @@
                             <input matInput placeholder="Name" formControlName="capacity">
                         </mat-form-field>
                     </div>
-                    <app-venue-ticket-category-list [forms]="venueTicketCategoriesForm"></app-venue-ticket-category-list>
+                    <app-venue-ticket-category-list *ngIf="venueTicketCategoriesForm && venueTicketCategoriesForm.controls.length>0" [forms]="venueTicketCategoriesForm"></app-venue-ticket-category-list>
                      <br>
                     <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
                         <button mat-raised-button color="warn" (click)="gotoList()">Cancel</button>
