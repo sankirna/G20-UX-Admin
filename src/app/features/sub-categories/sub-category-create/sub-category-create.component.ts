@@ -86,7 +86,7 @@ export class SubCategoryCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger
+    
     if (this.isValid()) {
       this.model = <SubCategoryModel>this.form.getRawValue();
       if (!this.isEdit) {

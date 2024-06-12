@@ -51,7 +51,7 @@ export class FileUploadComponent {
   @Input() fileModels: FileUploadRequestModel[] = [];
   
   @Output() uploadFileEvent: EventEmitter<FileUploadRequestModel> = new EventEmitter();
-
+  @Output() removeFileEvent: EventEmitter<FileUploadRequestModel> = new EventEmitter();
 
   constructor(private sanitizer: DomSanitizer
     , private fileService: FileService
@@ -86,21 +86,14 @@ export class FileUploadComponent {
         this.files.push(files[i]);
         let fileModel: FileUploadRequestModel = new FileUploadRequestModel();
         fileModel.fileName = file.name;
-        // fileModel.fileSize = file.size.toString();
-        // fileModel.fileType = file.type;
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
           if (reader && reader.result){
             fileModel.fileAsBase64 = reader.result.toString();
-            debugger
             this.uploadFileEvent.emit(fileModel);
-          // this.fileService.Upload(fileModel).subscribe(resp => {
-          //   debugger
-          //});
            }
         }
-        //}
       }
     }
   }
@@ -109,7 +102,8 @@ export class FileUploadComponent {
     let ix
     if (this.files && -1 !== (ix = this.files.indexOf(file))) {
       this.files.splice(ix, 1)
-      this.clearInputElement()
+      this.clearInputElement();
+      this.removeFileEvent.emit(new FileUploadRequestModel());
     }
   }
 

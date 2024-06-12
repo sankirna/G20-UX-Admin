@@ -36,7 +36,7 @@ export class ProfileInformationComponent implements OnInit, AfterViewInit {
   }
 
   uploadFile(event: FileUploadRequestModel){
-    debugger
+    
     this.resumeFileDataForm.controls["fileName"].setValue(event.fileName);
     this.resumeFileDataForm.controls["fileAsBase64"].setValue(event.fileAsBase64);
   }

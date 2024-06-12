@@ -49,11 +49,18 @@
           </div>
           <div fxLayout="row" fxLayoutGap="10px">
             <mat-label>logo</mat-label>
-            <app-mat-file-Upload (uploadFileEvent)="uploadFile($event)"></app-mat-file-Upload>
+            <app-mat-file-Upload [files]="logFiles" (uploadFileEvent)="uploadFile($event)" (removeFileEvent)="removeFile($event)"></app-mat-file-Upload>
+          </div>
+          <br>
+          <div fxLayout="row" fxLayoutAlign="start">
+            <mat-form-field appearance="outline">
+              <mat-label>Color</mat-label>
+              <input matInput  type="color" placeholder="Color" formControlName="color">
+            </mat-form-field>
           </div>
           <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
             <button mat-raised-button color="warn" (click)="gotoList()">Cancel</button>
-            <button mat-raised-button color="primary" (click)="onSubmit()">{{isEdit?'Update':'Create'}}</button>
+            <button mat-raised-button color="primary"  (click)="onSubmit()">{{isEdit?'Update':'Create'}}</button>
           </div>
         </form>
       </mat-card-content>

@@ -13,6 +13,7 @@ export class VenueModel {
   stadiumName: string | undefined;
   location: string | undefined;
   countryId: number | undefined= 0;
+  countryName: string | undefined;
   capacity: string | undefined;
 }
 

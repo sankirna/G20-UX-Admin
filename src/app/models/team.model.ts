@@ -16,6 +16,7 @@ export class TeamModel {
   countryId: number | undefined = 0;
   stateId: number | undefined = 0;
   cityId: number | undefined = 0;
+  color: string | undefined;
   logo: FileUploadRequestModel | undefined;
 }
 

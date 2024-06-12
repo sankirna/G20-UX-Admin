@@ -69,7 +69,7 @@ export class CategoryCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger
+    
     if (this.isValid()) {
       this.model = <CategoryModel>this.form.getRawValue();
       if(!this.isEdit){

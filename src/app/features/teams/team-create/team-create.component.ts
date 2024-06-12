@@ -25,6 +25,7 @@ export class TeamCreateComponent implements OnInit {
   countries: CountryModel[] = [];
   states: StateModel[] = [];
   cities: CityModel[] = [];
+  logFiles: File[] = []
   id: number = 0;
 
   constructor(
@@ -124,6 +125,7 @@ export class TeamCreateComponent implements OnInit {
       
     if(!this.model.logo){
       this.model.logo=new FileUploadRequestModel();
+      this.model.logo.fileType=1;
     }
     this.form = this.fb.group({
       id: [this.model.id],
@@ -132,10 +134,14 @@ export class TeamCreateComponent implements OnInit {
       countryId: [this.model.countryId, Validators.required],
       stateId: [this.model.stateId],
       cityId: [this.model.cityId],
-      
+      color: [this.model.color],
     });
+    
     this.form.addControl("logo", this.fileService.getForm(this.model.logo));
-
+    if(this.model.logo && this.model.logo.fileName){
+      this.logFiles.push( new File([],this.model.logo.fileName, {}))
+    }
+   
     if(this.model.countryId && this.model.countryId>0){
       this.loadStates(this.model.countryId);
     }
@@ -150,9 +156,15 @@ export class TeamCreateComponent implements OnInit {
   }
 
   uploadFile(event: FileUploadRequestModel){
-    debugger
     this.logoFileDataForm.controls["fileName"].setValue(event.fileName);
     this.logoFileDataForm.controls["fileAsBase64"].setValue(event.fileAsBase64);
+    this.logoFileDataForm.controls["id"].setValue(0);
+  }
+
+  removeFile(event: FileUploadRequestModel){
+    this.logoFileDataForm.controls["fileName"].setValue("");
+    this.logoFileDataForm.controls["fileAsBase64"].setValue("");
+    this.logoFileDataForm.controls["id"].setValue(0);
   }
 
   getData() {
@@ -168,7 +180,7 @@ export class TeamCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger
+    
     if (this.isValid()) {
       this.model = <TeamModel>this.form.getRawValue();
       if(!this.isEdit){
