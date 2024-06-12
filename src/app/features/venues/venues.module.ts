@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { VenuesRoutingModule } from './venues-routing.module';
 import { VenueService } from 'src/app/core/services/venue.service';
+import { FileService } from 'src/app/core/services/file.service';
+import { VenueTicketCategoryListComponent } from './shared/venue-ticket-category-list/venue-ticket-category-list.component';
 
 
 
@@ -14,6 +16,7 @@ import { VenueService } from 'src/app/core/services/venue.service';
   declarations: [
     VenueListComponent,
     VenueCreateComponent,
+    VenueTicketCategoryListComponent,
   ],
   imports: [
     CommonModule,
@@ -24,7 +27,8 @@ import { VenueService } from 'src/app/core/services/venue.service';
     VenuesRoutingModule
   ],
   providers: [
-    VenueService
+    VenueService,
+    FileService
   ]
 })
 export class VenuesModule { }

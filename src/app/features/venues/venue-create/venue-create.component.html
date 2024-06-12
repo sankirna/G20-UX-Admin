@@ -35,6 +35,8 @@
                             <input matInput placeholder="Name" formControlName="capacity">
                         </mat-form-field>
                     </div>
+                    <app-venue-ticket-category-list [forms]="venueTicketCategoriesForm"></app-venue-ticket-category-list>
+                     <br>
                     <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
                         <button mat-raised-button color="warn" (click)="gotoList()">Cancel</button>
                         <button mat-raised-button color="primary"

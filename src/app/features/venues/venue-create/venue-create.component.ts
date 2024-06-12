@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from 'src/app/core/services/common.service';
 import { CountryService } from 'src/app/core/services/country.service';
 import { VenueService } from 'src/app/core/services/venue.service';
 import { CountryModel, CountrySearchModel } from 'src/app/models/country.model';
+import { VenueTicketCategoryMapModel } from 'src/app/models/venue-ticket-category-map.model';
 import { VenueModel } from 'src/app/models/venue.model';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-venue-create',
@@ -34,6 +36,10 @@ export class VenueCreateComponent implements OnInit{
     return (this.id && this.id > 0 ? true : false);
   }
 
+  get venueTicketCategoriesForm() {
+    return this.form.get("venueTicketCategories") as FormArray;
+  }
+
   ngOnInit() {
     this.loadContries();
     this.id = <number><unknown>this.route.snapshot.paramMap.get('id');
@@ -50,12 +56,24 @@ export class VenueCreateComponent implements OnInit{
       this.model = new VenueModel();
       this.model.id = 0;
     }
-    this.form = this.fb.group({
-      id: [this.model.id],
-      stadiumName: [this.model.stadiumName, Validators.required],
-      location: [this.model.location],
-      capacity: [this.model.capacity],
-      countryId: [this.model.countryId, Validators.required],
+    // this.form = this.fb.group({
+    //   id: [this.model.id],
+    //   stadiumName: [this.model.stadiumName, Validators.required],
+    //   location: [this.model.location],
+    //   capacity: [this.model.capacity],
+    //   countryId: [this.model.countryId, Validators.required],
+    // });
+    this.form= this.venueService.getVenueModelForm(this.model);
+    if(this.isEdit){
+      this.buildVenueTicketCategoryMapModelForm(this.model.venueTicketCategories);
+    }
+  }
+
+  buildVenueTicketCategoryMapModelForm(venueTicketCategoryMapModels: VenueTicketCategoryMapModel[]) {
+    var self = this;
+    _.forEach(venueTicketCategoryMapModels, function (value, key) {
+      let addressForm: FormGroup = self.venueService.getVenueTicketCategoryMapModelForm(value);
+      self.venueTicketCategoriesForm.push(addressForm);
     });
   }
 

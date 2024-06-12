@@ -1,5 +1,6 @@
 import { BasePagedListModel } from "./base-paged-list.model";
 import { BaseSearchModel } from "./base-search.model";
+import { VenueTicketCategoryMapModel } from "./venue-ticket-category-map.model";
 
 // This class is used for searching categories with specific criteria.
 export class VenueSearchModel extends BaseSearchModel {
@@ -15,6 +16,7 @@ export class VenueModel {
   countryId: number | undefined= 0;
   countryName: string | undefined;
   capacity: string | undefined;
+  venueTicketCategories: VenueTicketCategoryMapModel[]=[];
 }
 
 export class VenueListModel extends BasePagedListModel<VenueModel> {
