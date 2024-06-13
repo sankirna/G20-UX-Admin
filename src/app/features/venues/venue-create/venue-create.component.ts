@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonService } from 'src/app/core/services/common.service';
 import { CountryService } from 'src/app/core/services/country.service';
 import { VenueService } from 'src/app/core/services/venue.service';
 import { CountryModel, CountrySearchModel } from 'src/app/models/country.model';
@@ -21,6 +20,7 @@ export class VenueCreateComponent implements OnInit {
   model: VenueModel | undefined;
   countries: CountryModel[] = [];
   id: number = 0;
+  isLoad:boolean=false;
 
 
   constructor(
@@ -29,9 +29,7 @@ export class VenueCreateComponent implements OnInit {
     , private countryService: CountryService
     , private ticketCategoryService: TicketCategoryService
     , private venueService: VenueService
-    , private commonService: CommonService
-    , private fb: FormBuilder) {
-      this.buildForm();
+    ) {
   }
 
   get isEdit(): boolean {
@@ -50,10 +48,11 @@ export class VenueCreateComponent implements OnInit {
     } else {
       this.buildForm();
     }
+    
   }
 
-
   buildForm() {
+    this.isLoad=false;
     if (!this.model) {
       this.model = new VenueModel();
       this.model.id = 0;
@@ -64,6 +63,7 @@ export class VenueCreateComponent implements OnInit {
     } else {
       this.loadTicketCategories();
     }
+    this.isLoad=true;
   }
 
   buildVenueTicketCategoryMapModelForm(venueTicketCategoryMapModels: VenueTicketCategoryMapModel[]) {

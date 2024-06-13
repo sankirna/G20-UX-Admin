@@ -43,7 +43,6 @@ export class VenueService {
   }
 
   getVenueModelForm(model: VenueModel) {
-
     let form = this.fb.group({
       id: [model.id],
       stadiumName: [model.stadiumName, Validators.required],
