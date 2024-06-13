@@ -1,0 +1,30 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+  <div fxFlex="100%">
+    <mat-card>
+      <mat-card-content>
+        <h2>Product {{isEdit?'Edit':'Create'}}</h2>
+        <div fxLayout="row" fxLayoutAlign="end end">
+            <button mat-raised-button color="primary" (click)="gotoList()">List</button>
+          </div>
+          <ng-container *ngIf="form" [formGroup]="form">
+            <mat-stepper [linear]="true" #stepper>
+                <mat-step fxLayoutGap="20px">
+                    <ng-template matStepLabel>Information</ng-template>
+                    <app-product-information *ngIf="form" [form]="form"></app-product-information>
+                    <div>
+                    </div>
+                    <div fxFlex="grow" fxLayoutAlign="end end" fxLayoutGap="10px">
+                        <button mat-button mat-raised-button color="primary" matStepperNext>Next</button>
+                    </div>
+                </mat-step>
+            </mat-stepper>
+
+            <div fxLayout="row" flex="100" fxLayoutAlign="end end" fxLayoutGap="20px">
+                <!-- <button mat-raised-button color="basic" (click)="clear()">Reset</button> -->
+                <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+            </div>
+        </ng-container>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="space-around ">
+    <form [formGroup]="form">
+        <div fxLayout="row" fxLayoutGap="10px">
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="First Name" formControlName="name">
+            </mat-form-field>
+        </div>
+        <!-- <div fxLayout="row" fxLayoutGap="10px">
+            <mat-label>Gender</mat-label>
+            <mat-button-toggle-group *ngIf="productTypes" multiple=false formControlName="productTypeId">
+                <mat-button-toggle *ngFor="let item of productTypes;" [value]="item.value">
+                    {{item.key}}</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div> -->
+    </form>
+</div>

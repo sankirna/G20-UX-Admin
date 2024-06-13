@@ -29,6 +29,16 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'venues',
+    loadChildren: () => import('./features/venues/venues.module').then(m => m.VenuesModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'products',
+    loadChildren: () => import('./features/products/products.module').then(m => m.ProductsModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'categories',
     loadChildren: () => import('./features/categories/categories.module').then(m => m.CategoriesModule),
     canActivate: [AuthGuard]
@@ -91,11 +101,6 @@ const appRoutes: Routes = [
   {
     path: 'about',
     loadChildren: () => import('./features/about/about.module').then(m => m.AboutModule),
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'venues',
-    loadChildren: () => import('./features/venues/venues.module').then(m => m.VenuesModule),
     canActivate: [AuthGuard]
   },
   {
