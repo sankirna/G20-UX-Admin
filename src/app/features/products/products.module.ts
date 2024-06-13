@@ -20,6 +20,7 @@ import { FileService } from 'src/app/core/services/file.service';
 import { ProductInformationComponent } from './shared/product-information/product-information.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { NgxMatDateFormats, NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+import { ProductTicketCategoryListComponent } from './shared/product-ticket-category-list/product-ticket-category-list.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { NgxMatDateFormats, NgxMatDatetimePickerModule, NgxMatNativeDateModule, 
       ProductListComponent
     , ProductCreateComponent
     , ProductInformationComponent
+    , ProductTicketCategoryListComponent
   ],
   imports: [
     CommonModule,

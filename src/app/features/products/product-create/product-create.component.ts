@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CityService } from 'src/app/core/services/city.service';
 import { CommonService } from 'src/app/core/services/common.service';
@@ -13,6 +13,8 @@ import { CountryModel, CountrySearchModel } from 'src/app/models/country.model';
 import { FileUploadRequestModel } from 'src/app/models/file.model';
 import { StateModel, StateSearchModel } from 'src/app/models/state.model';
 import { ProductModel } from 'src/app/models/product.model';
+import { ProductTicketCategoryMapModel } from 'src/app/models/product-ticket-category-map.model';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-product-create',
@@ -27,6 +29,7 @@ export class ProductCreateComponent implements OnInit {
   cities: CityModel[] = [];
   files: File[] = []
   id: number = 0;
+  isLoad:boolean=false;
 
   constructor(
       private router: Router
@@ -34,11 +37,14 @@ export class ProductCreateComponent implements OnInit {
     , private productService: ProductService
     , public fileService: FileService
     , private fb: FormBuilder) {
-    this.buildForm();
   }
 
   get isEdit(): boolean {
     return (this.id && this.id > 0 ? true : false);
+  }
+
+  get productTicketCategoriesForm() {
+    return this.form.get("productTicketCategories") as FormArray;
   }
 
   ngOnInit() {
@@ -55,16 +61,29 @@ export class ProductCreateComponent implements OnInit {
   }
   
   buildForm() {
+    this.isLoad=false;
     if (!this.model) {
       this.model= new ProductModel();
       this.model.id=0;
       this.model.productTypeId=0;
     }
     this.form = this.productService.getProductInformationForm(this.model);
+    if (this.isEdit) {
+      this.buildProductTicketCategoryMapModelForm(this.model.productTicketCategories);
+    } 
+    this.isLoad=true;
+
+  }
+
+  buildProductTicketCategoryMapModelForm(productTicketCategoryMapModels: ProductTicketCategoryMapModel[]) {
+    var self = this;
+    _.forEach(productTicketCategoryMapModels, function (value, key) {
+      let productTicketCategoryMapForm: FormGroup = self.productService.getProductTicketCategoryMapModelForm(value);
+      self.productTicketCategoriesForm.push(productTicketCategoryMapForm);
+    });
   }
 
   isValid(): boolean {
-    debugger
     return this.form.valid;
   }
 

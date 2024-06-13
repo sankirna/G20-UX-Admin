@@ -5,6 +5,7 @@ import { PagedListModel } from 'src/app/models/base-paged-list.model';
 import { FileUploadRequestModel } from 'src/app/models/file.model';
 import { ProductModel, ProductSearchModel } from 'src/app/models/product.model';
 import { FileService } from './file.service';
+import { ProductTicketCategoryMapModel } from 'src/app/models/product-ticket-category-map.model';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +54,26 @@ export class ProductService {
       scheduleDateTime: [model.scheduleDateTime],
       description: [model.description],
       fileId: [model.fileId],
+      productTicketCategories: this.fb.array([])
+    });
+    if (!model.file) {
+      model.file = new FileUploadRequestModel();
+    }
+    form.addControl("file", this.fileService.getForm(model.file));
+    return form;
+  }
+
+  getProductTicketCategoryMapModelForm(model: ProductTicketCategoryMapModel): FormGroup {
+    let form: FormGroup = this.fb.group({
+      id: [model.id],
+      productId: [model.productId],
+      ticketCategoryId: [model.ticketCategoryId],
+      ticketCategoryName: [model.ticketCategoryName],
+      total: [model.total],
+      available: [model.available],
+      block: [model.block],
+      sold: [model.sold],
+      price: [model.price],
     });
     if (!model.file) {
       model.file = new FileUploadRequestModel();

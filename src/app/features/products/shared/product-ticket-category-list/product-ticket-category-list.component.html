@@ -1,0 +1,48 @@
+<div fxFlex="95%">
+  <h2>Ticket Categories</h2>
+  <mat-table *ngIf="dataSource" [dataSource]="dataSource">
+
+    <ng-container matColumnDef="TicketCategoryName">
+      <mat-header-cell *matHeaderCellDef> Ticket Category Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.get('ticketCategoryName').value}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Total">
+      <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
+      <mat-cell *matCellDef="let element;" [formGroup]="element">
+        <mat-form-field floatLabel="never">
+          <input matInput type="number" placeholder="Total" formControlName="total" required>
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Available">
+      <mat-header-cell *matHeaderCellDef> Available </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.get('available').value}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Block">
+      <mat-header-cell *matHeaderCellDef> Block </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.get('block').value}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Sold">
+      <mat-header-cell *matHeaderCellDef> Sold </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.get('sold').value}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Price">
+      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+      <mat-cell *matCellDef="let element;" [formGroup]="element">
+        <mat-form-field floatLabel="never">
+          <input matInput type="number" placeholder="Total" formControlName="price" required>
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+    <!-- <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let row; let i = index;">
+        <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container> -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
