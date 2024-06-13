@@ -10,7 +10,7 @@
             <mat-stepper [linear]="true" #stepper>
                 <mat-step fxLayoutGap="20px">
                     <ng-template matStepLabel>Information</ng-template>
-                    <app-product-information *ngIf="form" [form]="form"></app-product-information>
+                    <app-product-information *ngIf="form" [isEdit]="isEdit" [form]="form"></app-product-information>
                     <div>
                     </div>
                     <div fxFlex="grow" fxLayoutAlign="end end" fxLayoutGap="10px">

@@ -6,6 +6,9 @@ import { FileUploadRequestModel } from 'src/app/models/file.model';
 import { ProductModel, ProductSearchModel } from 'src/app/models/product.model';
 import { FileService } from './file.service';
 import { ProductTicketCategoryMapModel } from 'src/app/models/product-ticket-category-map.model';
+import { VenueService } from './venue.service';
+import { VenueTicketCategoryMapModel } from 'src/app/models/venue-ticket-category-map.model';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +17,7 @@ export class ProductService {
   constructor(private http: HttpClient
     , private fb: FormBuilder
     , private fileService: FileService
+    , private venueService: VenueService
   ) { }
 
   list(model: ProductSearchModel) {
@@ -80,5 +84,20 @@ export class ProductService {
     }
     form.addControl("file", this.fileService.getForm(model.file));
     return form;
+  }
+
+  getProductTicketCategoryFromVenueTicketCategory(venueTicketCategories: VenueTicketCategoryMapModel[]) {
+    let productTicketCategories: ProductTicketCategoryMapModel[] = [];
+    _.forEach(venueTicketCategories, function (value, key) {
+      let model: ProductTicketCategoryMapModel = new ProductTicketCategoryMapModel();
+      model.ticketCategoryId=value.ticketCategoryId;
+      model.ticketCategoryName=value.ticketCategoryName;
+      model.file=value.file;
+      productTicketCategories.push(model);
+      // let productTicketCategoryMapForm: FormGroup = self.productService.getProductTicketCategoryMapModelForm(value);
+      // productTicketCategroiesFormArray.push(productTicketCategoryMapForm);
+    });
+    return productTicketCategories;
+    // let ProductTicketCategoryMapModel: ProductTicketCategoryMapModel= new ProductTicketCategoryMapModel();
   }
 }

@@ -16,7 +16,7 @@
         <div fxLayout="row" fxLayoutAlign="start" *ngIf="venues.length > 0">
             <mat-form-field appearance="outline">
                 <mat-label>Venue</mat-label>
-                <mat-select formControlName="venueId">
+                <mat-select formControlName="venueId" (selectionChange)="onVenueChange($event.value)">
                     <mat-option *ngFor="let venue of venues" [value]="venue.id">{{ venue.stadiumName
                         }}</mat-option>
                 </mat-select>

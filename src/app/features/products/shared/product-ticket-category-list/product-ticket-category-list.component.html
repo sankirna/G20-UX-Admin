@@ -1,6 +1,6 @@
 <div fxFlex="95%">
   <h2>Ticket Categories</h2>
-  <mat-table *ngIf="dataSource" [dataSource]="dataSource">
+  <mat-table *ngIf="forms && forms.getRawValue().length>0 &&  dataSource" [dataSource]="dataSource" >
 
     <ng-container matColumnDef="TicketCategoryName">
       <mat-header-cell *matHeaderCellDef> Ticket Category Name </mat-header-cell>

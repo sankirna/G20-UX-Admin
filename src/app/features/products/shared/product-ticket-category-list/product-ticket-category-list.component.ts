@@ -17,6 +17,7 @@ export class ProductTicketCategoryListComponent {
   }
 
   ngOnInit() {
+    debugger
     this.dataSource = new MatTableDataSource(this.forms.controls);
   }
 

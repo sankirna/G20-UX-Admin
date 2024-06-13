@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 import { EnumModel, PrimaryDataModel } from '../../../../models/common.model';
 import { CommonService } from 'src/app/core/services/common.service';
 import { FileUploadRequestModel } from 'src/app/models/file.model';
@@ -7,6 +7,9 @@ import { VenueModel, VenueSearchModel } from 'src/app/models/venue.model';
 import { VenueService } from 'src/app/core/services/venue.service';
 import { TeamModel, TeamSearchModel } from 'src/app/models/team.model';
 import { TeamService } from 'src/app/core/services/team.service';
+import * as _ from 'lodash';
+import { ProductTicketCategoryMapModel } from 'src/app/models/product-ticket-category-map.model';
+import { ProductService } from 'src/app/core/services/product.service';
 
 @Component({
   selector: 'app-product-information',
@@ -15,6 +18,7 @@ import { TeamService } from 'src/app/core/services/team.service';
 })
 export class ProductInformationComponent implements OnInit, AfterViewInit {
   @Input() form: FormGroup = new FormGroup({});
+  @Input() isEdit:boolean=false;
   productTypes: EnumModel[] | undefined = [];
   venues: VenueModel[] = [];
   teams: TeamModel[] = [];
@@ -23,6 +27,7 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
   constructor(
     private commonService: CommonService
     , private venueService: VenueService
+    , private productService: ProductService
     , private teamService: TeamService
   ) {
   }
@@ -76,6 +81,41 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
       if (data.data) {
         this.teams = data.data;
       }
+    });
+  }
+
+  onVenueChange(venueId: number): void {
+    if(!this.isEdit && venueId>0)
+    {
+      this.venueService.get(venueId).subscribe(
+        (response) => {
+          // this.model = response;
+          // this.buildForm();
+          //this.buildProductTicketCategoryMapModelForm(response);
+          var productTicketCategoryMapModels=this.productService.getProductTicketCategoryFromVenueTicketCategory(response.venueTicketCategories);
+          this.buildProductTicketCategoryMapModelForm(productTicketCategoryMapModels);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
+    // this.form.get('stateId')?.reset();
+    // this.form.get('cityId')?.reset();
+    // if (countryId) {
+    //   this.loadStates(countryId);
+    // } else {
+    //   this.states = [];
+    // }
+  }
+
+  buildProductTicketCategoryMapModelForm(productTicketCategoryMapModels: ProductTicketCategoryMapModel[]) {
+    var self = this;
+    var productTicketCategroiesFormArray=self.form.controls["productTicketCategories"] as FormArray;
+     productTicketCategroiesFormArray.setValue([]);
+    _.forEach(productTicketCategoryMapModels, function (value, key) {
+      let productTicketCategoryMapForm: FormGroup = self.productService.getProductTicketCategoryMapModelForm(value);
+      productTicketCategroiesFormArray.push(productTicketCategoryMapForm);
     });
   }
 
