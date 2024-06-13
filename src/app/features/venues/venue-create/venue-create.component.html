@@ -3,7 +3,7 @@
         <mat-card>
             <mat-card-content>
                 <h2>Venue {{isEdit?'Edit':'Create'}}</h2>
-                <form *ngIf="form" [formGroup]="form">
+                <form *ngIf="form && isLoad" [formGroup]="form" >
                     <div fxLayout="row" fxLayoutAlign="end end">
                         <button mat-raised-button color="primary" (click)="gotoList()">List</button>
                     </div>
