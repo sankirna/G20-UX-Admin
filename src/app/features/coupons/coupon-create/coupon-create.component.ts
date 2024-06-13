@@ -20,7 +20,7 @@ export class CouponCreateComponent implements OnInit {
   model: CouponModel | undefined;
   couponCalculateTypes: EnumModel[] | undefined = [];
   id: number = 0;
-
+  submitted: boolean=false;
   constructor(
       private router: Router
     , private route: ActivatedRoute
@@ -81,7 +81,7 @@ export class CouponCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    
+    this.submitted=true;
     if (this.isValid()) {
       this.model = <CouponModel>this.form.getRawValue();
       if(!this.isEdit){

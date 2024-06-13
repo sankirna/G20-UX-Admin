@@ -11,14 +11,24 @@
             <mat-form-field appearance="outline">
               <mat-label>User Name</mat-label>
               <input matInput placeholder="User Name" formControlName="userName">
+              <mat-error id="requiredUserError" *ngIf="form.controls['userName'].hasError('required') && submitted">
+                UserName is required
+              </mat-error>
             </mat-form-field>
+           
           </div>
 
           <div fxLayout="row" fxLayoutAlign="start">
             <mat-form-field appearance="outline">
               <mat-label>Email</mat-label>
               <input matInput placeholder="Email" formControlName="email">
-            </mat-form-field>
+              <mat-error id="invalidEmailError" *ngIf="form.controls['email'].hasError('email')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error id="requiredEmailError" *ngIf="form.controls['email'].hasError('required') && submitted">
+                Email is required
+              </mat-error>
+            </mat-form-field>           
           </div>
 
           <div fxLayout="row" fxLayoutAlign="start">
@@ -32,9 +42,12 @@
             <mat-form-field appearance="outline">
               <mat-label>Password</mat-label>
               <input matInput type="password" placeholder="Password" formControlName="password">
+              <mat-error id="requiredPasswordError" *ngIf="form.controls['password'].hasError('required') && submitted">
+                Password is required
+              </mat-error>
             </mat-form-field>
           </div>
-        
+
 
           <div fxLayout="row" fxLayoutAlign="start" *ngIf="roles.length > 0">
             <mat-form-field appearance="outline">
@@ -45,8 +58,8 @@
               </mat-select>
             </mat-form-field>
           </div>
-         
-          
+
+
           <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
             <button mat-raised-button color="warn" (click)="gotoList()">Cancel</button>
             <button mat-raised-button color="primary" (click)="onSubmit()">{{isEdit?'Update':'Create'}}</button>

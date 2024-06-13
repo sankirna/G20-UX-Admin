@@ -24,7 +24,7 @@ export class TicketCategoryCreateComponent implements OnInit {
   model: TicketCategoryModel | undefined;
   files: File[] = []
   id: number = 0;
-
+  submitted=false;
   constructor(
       private router: Router
     , private route: ActivatedRoute
@@ -108,7 +108,7 @@ export class TicketCategoryCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    
+    this.submitted=true;
     if (this.isValid()) {
       this.model = <TicketCategoryModel>this.form.getRawValue();
       if(!this.isEdit){

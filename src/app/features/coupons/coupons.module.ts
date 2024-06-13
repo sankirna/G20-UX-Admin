@@ -9,10 +9,11 @@ import { MatRippleModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CouponListComponent } from './coupon-list/coupon-list.component';
-import { CouponCreateComponent } from './coupon-create/coupon-create.component';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { CouponService } from 'src/app/core/services/coupon.service';
+import { CouponCreateComponent } from './coupon-create/coupon-create.component';
 
 @NgModule({
   declarations: [

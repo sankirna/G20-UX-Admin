@@ -1,5 +1,5 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center none">
-  <div fxFlex="100%">
+  <div fxFlex="95%">
     <mat-card>
       <mat-card-content>
         <h2>Coupon {{isEdit?'Edit':'Create'}}</h2>
@@ -11,6 +11,9 @@
             <mat-form-field appearance="outline">
               <mat-label>Code</mat-label>
               <input matInput placeholder="Code" formControlName="code">
+              <mat-error id="requiredUserError" *ngIf="form.controls['code'].hasError('required') && submitted">
+                Code is required
+              </mat-error>
             </mat-form-field>
           </div>
           <div fxLayout="row" fxLayoutGap="20px">

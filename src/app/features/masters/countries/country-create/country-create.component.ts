@@ -13,7 +13,7 @@ export class CountryCreateComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   model: CountryModel | undefined;
   id: number = 0;
-
+  submitted=false;
   constructor(
       private router: Router
     , private route: ActivatedRoute
@@ -63,6 +63,7 @@ export class CountryCreateComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted=true;
     if (this.isValid()) {
       this.model = <CountryModel>this.form.getRawValue();
       if(!this.isEdit){

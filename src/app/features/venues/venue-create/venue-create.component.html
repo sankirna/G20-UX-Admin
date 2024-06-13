@@ -11,7 +11,11 @@
                         <mat-form-field appearance="outline">
                             <mat-label>Name</mat-label>
                             <input matInput placeholder="Name" formControlName="stadiumName">
+                            <mat-error id="requiredUserError" *ngIf="form.controls['stadiumName'].hasError('required') && submitted">
+                                Name is required
+                              </mat-error>
                         </mat-form-field>
+                        
                     </div>
                     <div fxLayout="row" fxLayoutAlign="start" *ngIf="countries.length > 0">
                         <mat-form-field appearance="outline">
@@ -20,7 +24,11 @@
                                 <mat-option *ngFor="let country of countries" [value]="country.id">{{ country.name
                                     }}</mat-option>
                             </mat-select>
+                            <mat-error id="requiredUserError" *ngIf="form.controls['countryId'].hasError('required') && submitted">
+                                Country is required
+                              </mat-error>
                         </mat-form-field>
+                      
                     </div>
 
                     <div fxLayout="row" fxLayoutAlign="start">

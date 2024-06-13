@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
                     this.router.navigate(['/']);
                 },
                 error => {
-                    this.notificationService.openSnackBar(error.error);
+                    this.notificationService.openSnackBar(error.error.title);
                     this.loading = false;
                 }
             );

@@ -21,6 +21,7 @@ export class VenueCreateComponent implements OnInit {
   model: VenueModel | undefined;
   countries: CountryModel[] = [];
   id: number = 0;
+  submitted: boolean=false;
 
 
   constructor(
@@ -121,7 +122,7 @@ export class VenueCreateComponent implements OnInit {
   }
 
   onSubmit() {
-
+    this.submitted=true;
     if (this.isValid()) {
       this.model = <VenueModel>this.form.getRawValue();
       if (!this.isEdit) {

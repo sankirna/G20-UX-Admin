@@ -18,7 +18,7 @@ export class UserCreateComponent implements OnInit {
   model: UserModel | undefined;
   roles: RoleModel[] = [];  
   id: number = 0;
-
+  submitted = false;
 
   constructor(
       private router: Router
@@ -65,9 +65,9 @@ export class UserCreateComponent implements OnInit {
     this.form = this.fb.group({
       id: [this.model.id],
       userName: [this.model.userName, Validators.required],
-      email: [this.model.email, Validators.required],
+      email: [this.model.email, [Validators.required, Validators.email]],
       phoneNumber: [this.model.phoneNumber],
-      password: [this.model.password],
+      password: [this.model.password, Validators.required],
       roleIds: [this.model.roleIds],
     });
   }
@@ -89,8 +89,8 @@ export class UserCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    
-    if (this.isValid()) {
+    this.submitted =true;
+    if (this.isValid()) {      
       this.model = <UserModel>this.form.getRawValue();
       if(!this.isEdit){
         this.userService.create(this.model).subscribe(

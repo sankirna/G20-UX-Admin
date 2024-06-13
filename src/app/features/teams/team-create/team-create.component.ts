@@ -27,7 +27,7 @@ export class TeamCreateComponent implements OnInit {
   cities: CityModel[] = [];
   logFiles: File[] = []
   id: number = 0;
-
+  submitted: boolean=false;
   constructor(
       private router: Router
     , private route: ActivatedRoute
@@ -180,7 +180,7 @@ export class TeamCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    
+    this.submitted=true;
     if (this.isValid()) {
       this.model = <TeamModel>this.form.getRawValue();
       if(!this.isEdit){
