@@ -3,15 +3,74 @@
         <div fxLayout="row" fxLayoutGap="10px">
             <mat-form-field appearance="outline">
                 <mat-label>Name</mat-label>
-                <input matInput placeholder="First Name" formControlName="name">
+                <input matInput placeholder="Name" formControlName="name">
             </mat-form-field>
         </div>
-        <!-- <div fxLayout="row" fxLayoutGap="10px">
-            <mat-label>Gender</mat-label>
+        <div fxLayout="row" fxLayoutGap="10px">
+            <mat-label>Product Type</mat-label>
             <mat-button-toggle-group *ngIf="productTypes" multiple=false formControlName="productTypeId">
                 <mat-button-toggle *ngFor="let item of productTypes;" [value]="item.value">
                     {{item.key}}</mat-button-toggle>
             </mat-button-toggle-group>
-        </div> -->
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start" *ngIf="venues.length > 0">
+            <mat-form-field appearance="outline">
+                <mat-label>Venue</mat-label>
+                <mat-select formControlName="venueId">
+                    <mat-option *ngFor="let venue of venues" [value]="venue.id">{{ venue.stadiumName
+                        }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start">
+            <mat-form-field appearance="outline" *ngIf="teams.length > 0">
+                <mat-label>Team1</mat-label>
+                <mat-select formControlName="team1Id">
+                    <mat-option *ngFor="let team of teams" [value]="team.id">{{ team.name
+                        }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-label>VS</mat-label>
+            <mat-form-field appearance="outline" *ngIf="teams.length > 0">
+                <mat-label>Team2</mat-label>
+                <mat-select formControlName="team2Id">
+                    <mat-option *ngFor="let team of teams" [value]="team.id">{{ team.name
+                        }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Start Date Time</mat-label>
+                <input matInput [matDatepicker]="startDateTimepicker" formControlName="startDateTime">
+                <mat-datepicker-toggle matIconSuffix [for]="startDateTimepicker"></mat-datepicker-toggle>
+                <mat-datepicker #startDateTimepicker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>End Date Time</mat-label>
+                <input matInput [matDatepicker]="endDateTimepicker" formControlName="endDateTime">
+                <mat-datepicker-toggle matIconSuffix [for]="endDateTimepicker"></mat-datepicker-toggle>
+                <mat-datepicker #endDateTimepicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Schedule Date Time</mat-label>
+                <input matInput [matDatepicker]="scheduleDateTimepicker" formControlName="scheduleDateTime">
+                <mat-datepicker-toggle matIconSuffix [for]="scheduleDateTimepicker"></mat-datepicker-toggle>
+                <mat-datepicker #scheduleDateTimepicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+            <mat-label>file</mat-label>
+            <app-mat-file-Upload [files]="files" (uploadFileEvent)="uploadFile($event)"
+                (removeFileEvent)="removeFile($event)"></app-mat-file-Upload>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start">
+            <mat-form-field appearance="outline">
+              <mat-label>Description</mat-label><textarea matInput placeholder="Description"
+                formControlName="description"></textarea>
+            </mat-form-field>
+          </div>
     </form>
 </div>

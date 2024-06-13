@@ -19,6 +19,7 @@ import { CityService } from 'src/app/core/services/city.service';
 import { FileService } from 'src/app/core/services/file.service';
 import { ProductInformationComponent } from './shared/product-information/product-information.component';
 import { MatStepperModule } from '@angular/material/stepper';
+import { NgxMatDateFormats, NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 
 
 @NgModule({

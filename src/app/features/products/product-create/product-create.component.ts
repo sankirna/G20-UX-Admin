@@ -58,12 +58,13 @@ export class ProductCreateComponent implements OnInit {
     if (!this.model) {
       this.model= new ProductModel();
       this.model.id=0;
+      this.model.productTypeId=0;
     }
-      
     this.form = this.productService.getProductInformationForm(this.model);
   }
 
   isValid(): boolean {
+    debugger
     return this.form.valid;
   }
 

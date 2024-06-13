@@ -13,7 +13,21 @@ import { CustomPaginatorComponent } from './custom-paginator/custom-paginator.co
 import { ConfirmComponentDialogComponent } from './confirm-component-dialog/confirm-component-dialog.component';
 import { YearPickerComponent } from './year-picker/year-picker.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { NGX_MAT_DATE_FORMATS, NgxMatDateFormats, NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 
+
+const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
+    parse: {
+      dateInput: "l, LTS"
+    },
+    display: {
+      dateInput: "l, LTS",
+      monthYearLabel: "MMM YYYY",
+      dateA11yLabel: "LL",
+      monthYearA11yLabel: "MMMM YYYY"
+    }
+  };
+  
 @NgModule({
     imports: [
         RouterModule,
@@ -21,6 +35,9 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
         FormsModule,
         ReactiveFormsModule,
         FlexLayoutModule,
+        // NgxMatDatetimePickerModule,
+        // NgxMatTimepickerModule,
+        // NgxMatNativeDateModule,
     ],
     declarations: [
         ConfirmDialogComponent,
@@ -47,7 +64,13 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
         CustomPaginatorComponent,
         ConfirmComponentDialogComponent,
         YearPickerComponent,
-        FileUploadComponent
-    ]
+        FileUploadComponent,
+        // NgxMatDatetimePickerModule,
+        // NgxMatTimepickerModule,
+        // NgxMatNativeDateModule,
+    ],
+    // providers: [
+    //     { provide: NGX_MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS }
+    //   ]
 })
 export class SharedModule { }

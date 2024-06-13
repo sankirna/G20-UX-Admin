@@ -17,7 +17,7 @@ export class ProductModel {
   team2Id: number | undefined = 0;
   startDateTime: string | undefined;
   endDateTime: string | undefined;
-  echeduleDateTime: string | undefined;
+  scheduleDateTime: string | undefined;
   description: string | undefined;
   fileId: number | undefined = 0;
   file: FileUploadRequestModel | undefined;

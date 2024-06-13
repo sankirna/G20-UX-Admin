@@ -47,12 +47,12 @@ export class ProductService {
       productTypeId: [model.productTypeId, Validators.required],
       venueId: [model.venueId],
       team1Id: [model.team1Id],
-      team2Id: [model.team2Id, Validators.required],
-      startDateTime: [model.startDateTime, Validators.required],
+      team2Id: [model.team2Id],
+      startDateTime: [model.startDateTime],
       endDateTime: [model.endDateTime],
-      echeduleDateTime: [model.echeduleDateTime, Validators.required],
+      scheduleDateTime: [model.scheduleDateTime],
       description: [model.description],
-      fileId: [model.fileId, Validators.required],
+      fileId: [model.fileId],
     });
     if (!model.file) {
       model.file = new FileUploadRequestModel();
