@@ -13,14 +13,14 @@ export class ProductModel {
   id: number | undefined = 0;
   name: string | undefined;
   productTypeId: number | undefined = 0;
-  venueId: number | undefined = 0;
-  team1Id: number | undefined = 0;
-  team2Id: number | undefined = 0;
+  venueId: number | undefined;
+  team1Id: number | undefined ;
+  team2Id: number | undefined ;
   startDateTime: string | undefined;
   endDateTime: string | undefined;
   scheduleDateTime: string | undefined;
   description: string | undefined;
-  fileId: number | undefined = 0;
+  fileId: number | undefined ;
   file: FileUploadRequestModel | undefined;
   productTicketCategories: ProductTicketCategoryMapModel[]=[];
 

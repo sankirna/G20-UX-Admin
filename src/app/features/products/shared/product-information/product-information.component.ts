@@ -18,7 +18,7 @@ import { ProductService } from 'src/app/core/services/product.service';
 })
 export class ProductInformationComponent implements OnInit, AfterViewInit {
   @Input() form: FormGroup = new FormGroup({});
-  @Input() isEdit:boolean=false;
+  @Input() isEdit: boolean = false;
   productTypes: EnumModel[] | undefined = [];
   venues: VenueModel[] = [];
   teams: TeamModel[] = [];
@@ -34,7 +34,7 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getPrimaryData();
-    this.loadFiles() ;
+    this.loadFiles();
     this.loadVenues();
     this.loadTeams();
   }
@@ -47,6 +47,16 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
 
   }
 
+  get isReguler(): boolean {
+    let regular = false;
+    if (this.form.get("productTypeId")
+      && this.form.get("productTypeId")?.getRawValue() == 0) {
+      regular = true;
+    }
+    return regular;
+
+  }
+
   get fileDataForm() {
     return this.form.get("file") as FormGroup;
   }
@@ -55,8 +65,8 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
     if (this.fileDataForm) {
       this.files = [];
       let fileModel = this.fileDataForm.getRawValue();
-      if(fileModel.fileName){
-      this.files.push(new File([], fileModel.fileName, {}))
+      if (fileModel.fileName) {
+        this.files.push(new File([], fileModel.fileName, {}))
       }
     }
   }
@@ -85,14 +95,13 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
   }
 
   onVenueChange(venueId: number): void {
-    if(!this.isEdit && venueId>0)
-    {
+    if (!this.isEdit && venueId > 0) {
       this.venueService.get(venueId).subscribe(
         (response) => {
           // this.model = response;
           // this.buildForm();
           //this.buildProductTicketCategoryMapModelForm(response);
-          var productTicketCategoryMapModels=this.productService.getProductTicketCategoryFromVenueTicketCategory(response.venueTicketCategories);
+          var productTicketCategoryMapModels = this.productService.getProductTicketCategoryFromVenueTicketCategory(response.venueTicketCategories);
           this.buildProductTicketCategoryMapModelForm(productTicketCategoryMapModels);
         },
         (error) => {
@@ -111,8 +120,8 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
 
   buildProductTicketCategoryMapModelForm(productTicketCategoryMapModels: ProductTicketCategoryMapModel[]) {
     var self = this;
-    var productTicketCategroiesFormArray=self.form.controls["productTicketCategories"] as FormArray;
-     productTicketCategroiesFormArray.setValue([]);
+    var productTicketCategroiesFormArray = self.form.controls["productTicketCategories"] as FormArray;
+    productTicketCategroiesFormArray.setValue([]);
     _.forEach(productTicketCategoryMapModels, function (value, key) {
       let productTicketCategoryMapForm: FormGroup = self.productService.getProductTicketCategoryMapModelForm(value);
       productTicketCategroiesFormArray.push(productTicketCategoryMapForm);

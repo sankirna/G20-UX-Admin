@@ -13,6 +13,8 @@
                     {{item.key}}</mat-button-toggle>
             </mat-button-toggle-group>
         </div>
+        {{isReguler}}
+        <ng-container *ngIf="isReguler">
         <div fxLayout="row" fxLayoutAlign="start" *ngIf="venues.length > 0">
             <mat-form-field appearance="outline">
                 <mat-label>Venue</mat-label>
@@ -53,6 +55,7 @@
                 <mat-datepicker #endDateTimepicker></mat-datepicker>
             </mat-form-field>
         </div>
+    </ng-container>
         <div fxLayout="row">
             <mat-form-field appearance="outline">
                 <mat-label>Schedule Date Time</mat-label>
