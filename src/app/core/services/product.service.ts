@@ -100,4 +100,8 @@ export class ProductService {
     return productTicketCategories;
     // let ProductTicketCategoryMapModel: ProductTicketCategoryMapModel= new ProductTicketCategoryMapModel();
   }
+  getByProducts(id: string) {
+    const api = 'Product/GetCategoriesByProducts';
+    return this.http.post<any>(api, null, { params: { id: id } });
+  }
 }

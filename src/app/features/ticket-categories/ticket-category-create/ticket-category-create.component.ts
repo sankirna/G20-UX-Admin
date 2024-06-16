@@ -1,18 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CityService } from 'src/app/core/services/city.service';
-import { CommonService } from 'src/app/core/services/common.service';
-import { CountryService } from 'src/app/core/services/country.service';
 import { FileService } from 'src/app/core/services/file.service';
-import { StateService } from 'src/app/core/services/state.service';
 import { TicketCategoryService } from 'src/app/core/services/ticket-category.service';
-import { CityModel, CitySearchModel } from 'src/app/models/city.model';
-import { EnumModel } from 'src/app/models/common.model';
-import { CountryModel, CountrySearchModel } from 'src/app/models/country.model';
 import { FileUploadRequestModel } from 'src/app/models/file.model';
-import { StateModel, StateSearchModel } from 'src/app/models/state.model';
 import { TicketCategoryModel } from 'src/app/models/ticket-category.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-ticket-category-create',
@@ -25,14 +18,14 @@ export class TicketCategoryCreateComponent implements OnInit {
   files: File[] = []
   id: number = 0;
   submitted=false;
+  fileName :any='';
+  defaulturl = environment.defaultUrl;
+
+
   constructor(
       private router: Router
     , private route: ActivatedRoute
-    , private ticketCategoryService: TicketCategoryService
-    , private commonService: CommonService
-    , private countryService: CountryService
-    , private stateService: StateService
-    , private cityService: CityService
+    , private ticketCategoryService: TicketCategoryService    
     , public fileService: FileService
     , private fb: FormBuilder) {
     this.buildForm();
@@ -99,6 +92,7 @@ export class TicketCategoryCreateComponent implements OnInit {
     this.ticketCategoryService.get(this.id).subscribe(
       (response) => {
         this.model = response;
+        this.fileName= this.model.file;
         this.buildForm();
       },
       (error) => {

@@ -16,8 +16,7 @@ export class ProductTicketCategoryListComponent {
   constructor(private fb: FormBuilder) {
   }
 
-  ngOnInit() {
-    debugger
+  ngOnInit() {    
     this.dataSource = new MatTableDataSource(this.forms.controls);
   }
 

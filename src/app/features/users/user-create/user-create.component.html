@@ -7,39 +7,16 @@
           <div fxLayout="row" fxLayoutAlign="end end">
             <button mat-raised-button color="primary" (click)="gotoList()">List</button>
           </div>
-          <div fxLayout="row" fxLayoutAlign="start">
-            <mat-form-field appearance="outline">
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="30px">
+            <mat-form-field appearance="outline" fxFlex="50">
               <mat-label>User Name</mat-label>
               <input matInput placeholder="User Name" formControlName="userName">
               <mat-error id="requiredUserError" *ngIf="form.controls['userName'].hasError('required') && submitted">
                 UserName is required
               </mat-error>
             </mat-form-field>
-           
-          </div>
 
-          <div fxLayout="row" fxLayoutAlign="start">
-            <mat-form-field appearance="outline">
-              <mat-label>Email</mat-label>
-              <input matInput placeholder="Email" formControlName="email">
-              <mat-error id="invalidEmailError" *ngIf="form.controls['email'].hasError('email')">
-                Please enter a valid email address
-              </mat-error>
-              <mat-error id="requiredEmailError" *ngIf="form.controls['email'].hasError('required') && submitted">
-                Email is required
-              </mat-error>
-            </mat-form-field>           
-          </div>
-
-          <div fxLayout="row" fxLayoutAlign="start">
-            <mat-form-field appearance="outline">
-              <mat-label>Phone Number</mat-label>
-              <input matInput placeholder="Phone Number" formControlName="phoneNumber">
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row" fxLayoutAlign="start">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" fxFlex="50">
               <mat-label>Password</mat-label>
               <input matInput type="password" placeholder="Password" formControlName="password">
               <mat-error id="requiredPasswordError" *ngIf="form.controls['password'].hasError('required') && submitted">
@@ -48,9 +25,28 @@
             </mat-form-field>
           </div>
 
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="30px">
+            <mat-form-field appearance="outline" fxFlex="50">
+              <mat-label>Phone Number</mat-label>
+              <input matInput placeholder="Phone Number" formControlName="phoneNumber">
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="50">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" formControlName="email">
+              <mat-error id="invalidEmailError" *ngIf="form.controls['email'].hasError('email')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error id="requiredEmailError" *ngIf="form.controls['email'].hasError('required') && submitted">
+                Email is required
+              </mat-error>
+            </mat-form-field>
+          </div>
 
-          <div fxLayout="row" fxLayoutAlign="start" *ngIf="roles.length > 0">
-            <mat-form-field appearance="outline">
+
+
+
+          <div fxLayout="row" fxLayoutAlign="start" *ngIf="roles.length > 0" fxLayoutGap="30px">
+            <mat-form-field appearance="outline" fxFlex="50">
               <mat-label>Roles</mat-label>
               <mat-select formControlName="roleIds" multiple>
                 <mat-option *ngFor="let role of roles" [value]="role.id">{{ role.name

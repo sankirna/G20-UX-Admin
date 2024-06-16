@@ -24,9 +24,9 @@ export class FileUploadComponent {
   @Input() invalidFileTypeMessageSummary: any
   @Input() invalidFileTypeMessageDetail: any
   @Input() previewWidth: any
-  @Input() chooseLabel = 'Choose'
+  @Input() chooseLabel = 'Choose file'
   @Input() uploadLabel = 'Upload'
-  @Input() cancelLabel = 'Cance'
+  @Input() cancelLabel = 'Cancel'
   @Input() customUpload: any
   @Input() showUploadButton: any
   @Input() showCancelButton: any

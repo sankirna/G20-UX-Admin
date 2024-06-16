@@ -13,6 +13,7 @@ import { CountryModel, CountrySearchModel } from 'src/app/models/country.model';
 import { FileUploadRequestModel } from 'src/app/models/file.model';
 import { StateModel, StateSearchModel } from 'src/app/models/state.model';
 import { TeamModel } from 'src/app/models/team.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-team-create',
@@ -28,6 +29,9 @@ export class TeamCreateComponent implements OnInit {
   logFiles: File[] = []
   id: number = 0;
   submitted: boolean=false;
+  fileName :any='';
+  defaulturl = environment.defaultUrl;
+
   constructor(
       private router: Router
     , private route: ActivatedRoute
@@ -171,6 +175,7 @@ export class TeamCreateComponent implements OnInit {
     this.teamService.get(this.id).subscribe(
       (response) => {
         this.model = response;
+        this.fileName= this.model.logo;
         this.buildForm();
       },
       (error) => {

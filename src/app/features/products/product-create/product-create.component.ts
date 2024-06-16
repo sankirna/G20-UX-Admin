@@ -15,6 +15,7 @@ import { StateModel, StateSearchModel } from 'src/app/models/state.model';
 import { ProductModel } from 'src/app/models/product.model';
 import { ProductTicketCategoryMapModel } from 'src/app/models/product-ticket-category-map.model';
 import * as _ from 'lodash';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-create',
@@ -29,10 +30,12 @@ export class ProductCreateComponent implements OnInit {
   cities: CityModel[] = [];
   files: File[] = []
   id: number = 0;
-  isLoad:boolean=false;
+  isLoad: boolean = false;
+  fileName :any='';
+  defaulturl = environment.defaultUrl;
 
   constructor(
-      private router: Router
+    private router: Router
     , private route: ActivatedRoute
     , private productService: ProductService
     , public fileService: FileService
@@ -47,11 +50,16 @@ export class ProductCreateComponent implements OnInit {
     return this.form.get("productTicketCategories") as FormArray;
   }
 
+  get productTicketComboForm() {
+    return this.form.get("productTicketCombo") as FormArray;
+  }
+
+
   ngOnInit() {
     this.id = <number><unknown>this.route.snapshot.paramMap.get('id');
     if (this.isEdit) {
       this.getData();
-    }else{
+    } else {
       this.buildForm();
     }
   }
@@ -59,19 +67,19 @@ export class ProductCreateComponent implements OnInit {
   get fileDataForm() {
     return this.form.get("file") as FormGroup;
   }
-  
+
   buildForm() {
-    this.isLoad=false;
+    this.isLoad = false;
     if (!this.model) {
-      this.model= new ProductModel();
-      this.model.id=0;
-      this.model.productTypeId=0;
+      this.model = new ProductModel();
+      this.model.id = 0;
+      this.model.productTypeId = 0;
     }
     this.form = this.productService.getProductInformationForm(this.model);
     if (this.isEdit) {
       this.buildProductTicketCategoryMapModelForm(this.model.productTicketCategories);
-    } 
-    this.isLoad=true;
+    }
+    this.isLoad = true;
 
   }
 
@@ -87,13 +95,13 @@ export class ProductCreateComponent implements OnInit {
     return this.form.valid;
   }
 
-  uploadFile(event: FileUploadRequestModel){
+  uploadFile(event: FileUploadRequestModel) {
     this.fileDataForm.controls["fileName"].setValue(event.fileName);
     this.fileDataForm.controls["fileAsBase64"].setValue(event.fileAsBase64);
     this.fileDataForm.controls["id"].setValue(0);
   }
 
-  removeFile(event: FileUploadRequestModel){
+  removeFile(event: FileUploadRequestModel) {
     this.fileDataForm.controls["fileName"].setValue("");
     this.fileDataForm.controls["fileAsBase64"].setValue("");
     this.fileDataForm.controls["id"].setValue(0);
@@ -103,6 +111,7 @@ export class ProductCreateComponent implements OnInit {
     this.productService.get(this.id).subscribe(
       (response) => {
         this.model = response;
+        this.fileName= this.model.file;
         this.buildForm();
       },
       (error) => {
@@ -112,10 +121,19 @@ export class ProductCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    
+
     if (this.isValid()) {
       this.model = <ProductModel>this.form.getRawValue();
-      if(!this.isEdit){
+      this.model.productCombos = [{
+        "id": 0,
+        "productId": 2013,
+        "productMapId": 1002
+      },{
+        "id": 0,
+        "productId": 2013,
+        "productMapId": 1003
+      }];
+      if (!this.isEdit) {
         this.productService.create(this.model).subscribe(
           (response) => {
             this.router.navigateByUrl('/products/list');
@@ -124,7 +142,7 @@ export class ProductCreateComponent implements OnInit {
             console.error(error);
           }
         );
-      }else{
+      } else {
         this.productService.update(this.model).subscribe(
           (response) => {
             this.router.navigateByUrl('/products/list');
@@ -134,14 +152,14 @@ export class ProductCreateComponent implements OnInit {
           }
         );
       }
-      
+
     }
   }
 
   onClear() {
 
   }
-  gotoList(){
+  gotoList() {
     this.router.navigateByUrl('/products/list');
   }
 }

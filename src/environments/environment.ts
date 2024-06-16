@@ -9,5 +9,6 @@ export const environment = {
   production: false,
   apiUrl: 'https://localhost:7050/api/',
   logLevel: NgxLoggerLevel.TRACE,
+  defaultUrl:'https://localhost:7050/StaticFiles/Default_Image/no-image.jpg',
   serverLogLevel: NgxLoggerLevel.OFF
 };

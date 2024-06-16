@@ -1,0 +1,61 @@
+<div fxFlex="95%">
+
+  <!-- <h2>Product Categories</h2> -->
+  <!-- <mat-form-field appearance="outline" fxFlex="50">
+    <mat-label>Products</mat-label>
+    <mat-select [(ngModel)]="productIds" multiple>
+      <mat-option *ngFor="let product of products" [value]="product.id">{{ product.name}} {{ product.team1Id}} {{
+        product.team2Id}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+    <button mat-button mat-raised-button color="primary" matStepperPrevious (click)="loadCategoriesByProduct()">Load
+      category</button>
+  </div> -->
+
+  <mat-table *ngIf="forms && forms.getRawValue().length>0 &&  dataSource" [dataSource]="dataSource">
+
+    <ng-container matColumnDef="TicketCategoryName">
+      <mat-header-cell *matHeaderCellDef> Ticket Category Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.get('ticketCategoryName').value}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Total">
+      <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
+      <mat-cell *matCellDef="let element;" [formGroup]="element">
+        <mat-form-field floatLabel="never">
+          <input matInput type="number" placeholder="Total" formControlName="total" required>
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Available">
+      <mat-header-cell *matHeaderCellDef> Available </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.get('available').value}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Block">
+      <mat-header-cell *matHeaderCellDef> Block </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.get('block').value}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Sold">
+      <mat-header-cell *matHeaderCellDef> Sold </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.get('sold').value}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Price">
+      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+      <mat-cell *matCellDef="let element;" [formGroup]="element">
+        <mat-form-field floatLabel="never">
+          <input matInput type="number" placeholder="Total" formControlName="price" required>
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+    <!-- <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let row; let i = index;">
+        <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container> -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

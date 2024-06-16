@@ -10,6 +10,7 @@ import { TeamService } from 'src/app/core/services/team.service';
 import * as _ from 'lodash';
 import { ProductTicketCategoryMapModel } from 'src/app/models/product-ticket-category-map.model';
 import { ProductService } from 'src/app/core/services/product.service';
+import { ProductModel, ProductSearchModel } from 'src/app/models/product.model';
 
 @Component({
   selector: 'app-product-information',
@@ -23,7 +24,8 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
   venues: VenueModel[] = [];
   teams: TeamModel[] = [];
   files: File[] = []
-
+  products: ProductModel[] = [];  
+  productIds:number[] = [];
   constructor(
     private commonService: CommonService
     , private venueService: VenueService
@@ -37,6 +39,15 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
     this.loadFiles();
     this.loadVenues();
     this.loadTeams();
+
+    let productSearchModel = new ProductSearchModel();
+    productSearchModel.length = 10000;
+    productSearchModel.start = 0;
+    this.productService.list(productSearchModel).subscribe(data => {
+      if (data.data) {
+        this.products = data.data;
+      }
+    }); 
   }
 
   getPrimaryData() {
@@ -108,7 +119,7 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
           console.error(error);
         }
       );
-    }
+    } 
     // this.form.get('stateId')?.reset();
     // this.form.get('cityId')?.reset();
     // if (countryId) {
@@ -138,5 +149,31 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
     this.fileDataForm.controls["fileName"].setValue("");
     this.fileDataForm.controls["fileAsBase64"].setValue("");
     this.fileDataForm.controls["id"].setValue(0);
+  }
+
+  loadCategoriesByProduct(){
+    
+    this.productService.getByProducts(this.productIds.toString()).subscribe(
+      (response) => {
+        // this.model = response;
+        // this.buildForm();
+        //this.buildProductTicketCategoryMapModelForm(response);
+        var productTicketCategoryMapModels = this.productService.getProductTicketCategoryFromVenueTicketCategory(response.productTicketCategories);
+        this.buildProductTicketComboMapModelForm(productTicketCategoryMapModels);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  buildProductTicketComboMapModelForm(productTicketCategoryMapModels: ProductTicketCategoryMapModel[]) {
+    var self = this;
+    var productTicketCategroiesFormArray = self.form.controls["productTicketCategories"] as FormArray;
+    productTicketCategroiesFormArray.setValue([]);
+    _.forEach(productTicketCategoryMapModels, function (value, key) {
+      let productTicketCategoryMapForm: FormGroup = self.productService.getProductTicketCategoryMapModelForm(value);
+      productTicketCategroiesFormArray.push(productTicketCategoryMapForm);
+    });
   }
 }

@@ -1,6 +1,7 @@
 import { BasePagedListModel } from "./base-paged-list.model";
 import { BaseSearchModel } from "./base-search.model";
 import { FileUploadRequestModel } from "./file.model";
+import { ProductCombosModel } from "./product-combos.model";
 import { ProductTicketCategoryMapModel } from "./product-ticket-category-map.model";
 
 // This class is used for searching products with specific criteria.
@@ -23,7 +24,7 @@ export class ProductModel {
   fileId: number | undefined ;
   file: FileUploadRequestModel | undefined;
   productTicketCategories: ProductTicketCategoryMapModel[]=[];
-
+  productCombos:ProductCombosModel[]=[];
 }
 
 // This class represents a paged list of products.

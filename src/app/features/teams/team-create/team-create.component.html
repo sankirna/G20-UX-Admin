@@ -7,17 +7,17 @@
           <div fxLayout="row" fxLayoutAlign="end end">
             <button mat-raised-button color="primary" (click)="gotoList()">List</button>
           </div>
-          <div fxLayout="row" fxLayoutAlign="start">
-            <mat-form-field appearance="outline">
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="30px">
+            <mat-form-field appearance="outline" fxFlex="50">
               <mat-label>Name</mat-label>
               <input matInput placeholder="Name" formControlName="name">
               <mat-error id="requiredUserError" *ngIf="form.controls['name'].hasError('required') && submitted">
                 Name is required
               </mat-error>
             </mat-form-field>
-          </div>
-          <div fxLayout="row" fxLayoutAlign="start">
-            <mat-form-field appearance="outline">
+          <!-- </div>
+          <div fxLayout="row" fxLayoutAlign="start"> -->
+            <mat-form-field appearance="outline" fxFlex="50">
               <mat-label>Short Name</mat-label>
               <input matInput placeholder="Short Name" formControlName="shortName">
             </mat-form-field>
@@ -51,7 +51,9 @@
            
           </div>
           <div fxLayout="row" fxLayoutGap="10px">
-            <mat-label>logo</mat-label>
+            <img width="150" height="150" src="{{fileName.url}}" *ngIf="fileName.url" > 
+            <img width="150" height="150" src="{{defaulturl}}" *ngIf="!fileName.url"> 
+            <mat-label>Upload Logo</mat-label>
             <app-mat-file-Upload [files]="logFiles" (uploadFileEvent)="uploadFile($event)" (removeFileEvent)="removeFile($event)"></app-mat-file-Upload>
           </div>
           <br>
