@@ -150,7 +150,7 @@ export class ProductService {
   }
 
   getByProducts(productIds: number[]) {
-    const api = 'Product/GetCategoriesByProducts';
+    const api = 'Product/GetTicketCategoriesByProducts';
     return this.http.post<any>(api,  productIds);
   }
 

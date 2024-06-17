@@ -45,29 +45,4 @@ export class ProductTicketComboListComponent {
     this.forms.removeAt(index);
     this.dataSource = new MatTableDataSource(this.forms.controls);
   }
-
-  // loadCategoriesByProduct(){
-  //   this.productService.getByProducts(this.productIds.toString()).subscribe(
-  //     (response) => {debugger
-  //       // this.model = response;
-  //       // this.buildForm();
-  //       //this.buildProductTicketCategoryMapModelForm(response);
-  //       var productTicketCategoryMapModels = this.productService.getProductTicketCategoryFromVenueTicketCategory(response.productTicketCategories);
-  //       this.buildProductTicketCategoryMapModelForm(productTicketCategoryMapModels);
-  //     },
-  //     (error) => {
-  //       console.error(error);
-  //     }
-  //   );
-  // }
-
-  // buildProductTicketCategoryMapModelForm(productTicketCategoryMapModels: ProductTicketCategoryMapModel[]) {
-  //   var self = this;
-  //   var productTicketCategroiesFormArray = self.form.controls["productTicketCombo"] as FormArray;
-  //   productTicketCategroiesFormArray.setValue([]);
-  //   _.forEach(productTicketCategoryMapModels, function (value, key) {debugger
-  //     let productTicketCategoryMapForm: FormGroup = self.productService.getProductTicketCategoryMapModelForm(value);
-  //     productTicketCategroiesFormArray.push(productTicketCategoryMapForm);
-  //   });
-  // }
 }

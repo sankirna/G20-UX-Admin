@@ -59,11 +59,7 @@ export class ProductCreateComponent implements OnInit {
   get productCombosForm() {
     return this.form.get("productCombos") as FormArray;
   }
-
-  get productTicketComboForm() {
-    return this.form.get("productTicketCombo") as FormArray;
-  }
-
+ 
   ngOnInit() {
     this.id = <number><unknown>this.route.snapshot.paramMap.get('id');
     if (this.isEdit) {
