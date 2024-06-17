@@ -12,3 +12,9 @@ export class ProductTicketCategoryMapModel {
   price:number | undefined= 0;
   file: FileUploadRequestModel | undefined;
 }
+
+export class ProductTicketCategoriesRequestModel {
+  productId: number | undefined;
+  productMapIds: number[] =[];
+
+}

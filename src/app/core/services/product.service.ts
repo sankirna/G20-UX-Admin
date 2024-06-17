@@ -5,7 +5,7 @@ import { PagedListModel } from 'src/app/models/base-paged-list.model';
 import { FileUploadRequestModel } from 'src/app/models/file.model';
 import { ProductModel, ProductSearchModel } from 'src/app/models/product.model';
 import { FileService } from './file.service';
-import { ProductTicketCategoryMapModel } from 'src/app/models/product-ticket-category-map.model';
+import { ProductTicketCategoriesRequestModel, ProductTicketCategoryMapModel } from 'src/app/models/product-ticket-category-map.model';
 import { VenueService } from './venue.service';
 import { VenueTicketCategoryMapModel } from 'src/app/models/venue-ticket-category-map.model';
 import * as _ from 'lodash';
@@ -149,9 +149,9 @@ export class ProductService {
     return this.getProductsComboForm(model);
   }
 
-  getByProducts(productIds: number[]) {
+  getByProducts(model: ProductTicketCategoriesRequestModel) {
     const api = 'Product/GetTicketCategoriesByProducts';
-    return this.http.post<any>(api,  productIds);
+    return this.http.post<any>(api,  model);
   }
 
 

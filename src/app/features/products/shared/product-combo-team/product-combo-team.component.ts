@@ -7,7 +7,7 @@ import { ProductService } from 'src/app/core/services/product.service';
 import { ProductModel } from 'src/app/models/product.model';
 import * as _ from 'lodash';
 import { ProductCombosModel } from 'src/app/models/product-combos.model';
-import { ProductTicketCategoryMapModel } from 'src/app/models/product-ticket-category-map.model';
+import { ProductTicketCategoriesRequestModel, ProductTicketCategoryMapModel } from 'src/app/models/product-ticket-category-map.model';
 
 @Component({
   selector: 'app-product-combo-team',
@@ -95,7 +95,13 @@ export class ProductComboTeamComponent {
         productIds.push(value.productMapId);
       }
     });
-    this.productService.getByProducts(productIds).subscribe(
+    let model: ProductTicketCategoriesRequestModel = new ProductTicketCategoriesRequestModel();
+    if(this.form.get("id")?.getRawValue()>0){
+      model.productId=this.form.get("id")?.getRawValue();
+    }
+    model.productMapIds=productIds;
+
+    this.productService.getByProducts(model).subscribe(
       (response) => {
         var productTicketCategoryMapModels = this.productService.getProductTicketCategoryFromVenueTicketCategory(response);
         this.buildProductTicketComboMapModelForm(productTicketCategoryMapModels);
