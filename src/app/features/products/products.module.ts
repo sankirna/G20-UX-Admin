@@ -22,6 +22,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { NgxMatDateFormats, NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 import { ProductTicketCategoryListComponent } from './shared/product-ticket-category-list/product-ticket-category-list.component';
 import { ProductTicketComboListComponent } from './shared/product-ticket-combo-list/product-ticket-combo-list.component';
+import { ProductComboTeamComponent } from './shared/product-combo-team/product-combo-team.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { ProductTicketComboListComponent } from './shared/product-ticket-combo-l
     , ProductInformationComponent
     , ProductTicketCategoryListComponent
     , ProductTicketComboListComponent
+    , ProductComboTeamComponent
   ],
   imports: [
     CommonModule,

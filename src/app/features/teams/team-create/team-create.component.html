@@ -51,10 +51,11 @@
            
           </div>
           <div fxLayout="row" fxLayoutGap="10px">
-            <img width="150" height="150" src="{{fileName.url}}" *ngIf="fileName.url" > 
-            <img width="150" height="150" src="{{defaulturl}}" *ngIf="!fileName.url"> 
+          
             <mat-label>Upload Logo</mat-label>
             <app-mat-file-Upload [files]="logFiles" (uploadFileEvent)="uploadFile($event)" (removeFileEvent)="removeFile($event)"></app-mat-file-Upload>
+            <img width="150" height="150" src="{{fileName.url}}" *ngIf="fileName.url" > 
+            <img width="150" height="150" src="{{defaulturl}}" *ngIf="!fileName.url"> 
           </div>
           <br>
           <div fxLayout="row" fxLayoutAlign="start">

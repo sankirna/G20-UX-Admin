@@ -9,11 +9,15 @@ import { ProductTicketCategoryMapModel } from 'src/app/models/product-ticket-cat
 import { VenueService } from './venue.service';
 import { VenueTicketCategoryMapModel } from 'src/app/models/venue-ticket-category-map.model';
 import * as _ from 'lodash';
+import { ProductCombosModel } from 'src/app/models/product-combos.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+
+  regularProducts: ProductModel[] = [];
+
   constructor(private http: HttpClient
     , private fb: FormBuilder
     , private fileService: FileService
@@ -45,6 +49,33 @@ export class ProductService {
     return this.http.post<number>(api, null, { params: { id: id } });
   }
 
+  getRegularProducts() {
+    let model: ProductSearchModel = new ProductSearchModel();
+    model.length = 10000;
+    model.start = 0;
+    model.productTypeId = 0;
+    return this.list(model);
+  }
+
+
+  isReguler(form: FormGroup): boolean {
+    let regular = false;
+    if (form.get("productTypeId")
+      && form.get("productTypeId")?.getRawValue() == 0) {
+      regular = true;
+    }
+    return regular;
+  }
+
+  isCombo(form: FormGroup): boolean {
+    let combo = false;
+    if (form.get("productTypeId")
+      && form.get("productTypeId")?.getRawValue() == 1) {
+      combo = true;
+    }
+    return combo;
+  }
+
   getProductInformationForm(model: ProductModel): FormGroup {
     let form: FormGroup = this.fb.group({
       id: [model.id],
@@ -58,7 +89,8 @@ export class ProductService {
       scheduleDateTime: [model.scheduleDateTime],
       description: [model.description],
       fileId: [model.fileId],
-      productTicketCategories: this.fb.array([])
+      productTicketCategories: this.fb.array([]),
+      productCombos: this.fb.array([])
     });
     if (!model.file) {
       model.file = new FileUploadRequestModel();
@@ -90,9 +122,9 @@ export class ProductService {
     let productTicketCategories: ProductTicketCategoryMapModel[] = [];
     _.forEach(venueTicketCategories, function (value, key) {
       let model: ProductTicketCategoryMapModel = new ProductTicketCategoryMapModel();
-      model.ticketCategoryId=value.ticketCategoryId;
-      model.ticketCategoryName=value.ticketCategoryName;
-      model.file=value.file;
+      model.ticketCategoryId = value.ticketCategoryId;
+      model.ticketCategoryName = value.ticketCategoryName;
+      model.file = value.file;
       productTicketCategories.push(model);
       // let productTicketCategoryMapForm: FormGroup = self.productService.getProductTicketCategoryMapModelForm(value);
       // productTicketCategroiesFormArray.push(productTicketCategoryMapForm);
@@ -100,8 +132,27 @@ export class ProductService {
     return productTicketCategories;
     // let ProductTicketCategoryMapModel: ProductTicketCategoryMapModel= new ProductTicketCategoryMapModel();
   }
-  getByProducts(id: string) {
-    const api = 'Product/GetCategoriesByProducts';
-    return this.http.post<any>(api, null, { params: { id: id } });
+
+  getProductsComboForm(model: ProductCombosModel) {
+    let form: FormGroup = this.fb.group({
+      id: [model.id],
+      productId: [model.productId],
+      productMapId: [model.productMapId],
+    });
+    return form;
   }
+
+  getProductsComboFormByProductId(productId: number) {
+    let model: ProductCombosModel= new ProductCombosModel();
+    model.id=0;
+    model.productMapId=productId;
+    return this.getProductsComboForm(model);
+  }
+
+  getByProducts(productIds: number[]) {
+    const api = 'Product/GetCategoriesByProducts';
+    return this.http.post<any>(api,  productIds);
+  }
+
+
 }

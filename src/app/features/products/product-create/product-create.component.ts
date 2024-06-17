@@ -16,6 +16,7 @@ import { ProductModel } from 'src/app/models/product.model';
 import { ProductTicketCategoryMapModel } from 'src/app/models/product-ticket-category-map.model';
 import * as _ from 'lodash';
 import { environment } from 'src/environments/environment';
+import { ProductCombosModel } from 'src/app/models/product-combos.model';
 
 @Component({
   selector: 'app-product-create',
@@ -37,7 +38,7 @@ export class ProductCreateComponent implements OnInit {
   constructor(
     private router: Router
     , private route: ActivatedRoute
-    , private productService: ProductService
+    , public productService: ProductService
     , public fileService: FileService
     , private fb: FormBuilder) {
   }
@@ -46,14 +47,22 @@ export class ProductCreateComponent implements OnInit {
     return (this.id && this.id > 0 ? true : false);
   }
 
+  get isCombo(): boolean {
+    return this.productService.isCombo(this.form);
+  }
+
+
   get productTicketCategoriesForm() {
     return this.form.get("productTicketCategories") as FormArray;
+  }
+
+  get productCombosForm() {
+    return this.form.get("productCombos") as FormArray;
   }
 
   get productTicketComboForm() {
     return this.form.get("productTicketCombo") as FormArray;
   }
-
 
   ngOnInit() {
     this.id = <number><unknown>this.route.snapshot.paramMap.get('id');
@@ -78,9 +87,16 @@ export class ProductCreateComponent implements OnInit {
     this.form = this.productService.getProductInformationForm(this.model);
     if (this.isEdit) {
       this.buildProductTicketCategoryMapModelForm(this.model.productTicketCategories);
+      this.productService. getRegularProducts().subscribe(data => {
+        if (data.data) {
+          this.productService.regularProducts=data.data;
+        }
+      });
+    }
+    if(this.model.productCombos){
+      this.buildProductsComboModelForm(this.model.productCombos);
     }
     this.isLoad = true;
-
   }
 
   buildProductTicketCategoryMapModelForm(productTicketCategoryMapModels: ProductTicketCategoryMapModel[]) {
@@ -88,6 +104,14 @@ export class ProductCreateComponent implements OnInit {
     _.forEach(productTicketCategoryMapModels, function (value, key) {
       let productTicketCategoryMapForm: FormGroup = self.productService.getProductTicketCategoryMapModelForm(value);
       self.productTicketCategoriesForm.push(productTicketCategoryMapForm);
+    });
+  }
+
+  buildProductsComboModelForm(productCombos: ProductCombosModel[]) {
+    var self = this;
+    _.forEach(productCombos, function (value, key) {
+      let productComboForm: FormGroup = self.productService.getProductsComboForm(value);
+      self.productCombosForm.push(productComboForm);
     });
   }
 
@@ -124,15 +148,6 @@ export class ProductCreateComponent implements OnInit {
 
     if (this.isValid()) {
       this.model = <ProductModel>this.form.getRawValue();
-      this.model.productCombos = [{
-        "id": 0,
-        "productId": 2013,
-        "productMapId": 1002
-      },{
-        "id": 0,
-        "productId": 2013,
-        "productMapId": 1003
-      }];
       if (!this.isEdit) {
         this.productService.create(this.model).subscribe(
           (response) => {

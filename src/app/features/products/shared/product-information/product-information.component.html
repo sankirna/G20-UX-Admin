@@ -9,8 +9,8 @@
         <div fxLayout="row" fxLayoutGap="10px"> -->
             <div fxFlex="50" fxLayoutGap="10px">
                 <mat-label>Product Type</mat-label>
-                <mat-button-toggle-group *ngIf="productTypes" multiple=false formControlName="productTypeId">
-                    <mat-button-toggle *ngFor="let item of productTypes;" [value]="item.value">
+                <mat-button-toggle-group *ngIf="productTypes" multiple=false formControlName="productTypeId"  >
+                    <mat-button-toggle *ngFor="let item of productTypes;" [value]="item.value" (change)="onProductTypeChange(item)">
                         {{item.key}}</mat-button-toggle>
                 </mat-button-toggle-group>
             </div>
@@ -58,12 +58,12 @@
             </div>
         </ng-container>
 
-        <ng-container *ngIf="!isReguler">
+        <!-- <ng-container *ngIf="!isReguler">
             <div fxLayout="row" fxLayoutAlign="start" >
             <mat-form-field appearance="outline" fxFlex="50">
-                <mat-label>Products</mat-label>
+                <mat-label>Select Products</mat-label>
                 <mat-select [(ngModel)]="productIds" [ngModelOptions]="{standalone: true}" multiple>
-                  <mat-option *ngFor="let product of products" [value]="product.id">{{ product.name}} {{ product.team1Id}} {{
+                  <mat-option *ngFor="let product of regularProducts" [value]="product.id">{{ product.name}} {{ product.team1Id}} {{
                     product.team2Id}}</mat-option>
                 </mat-select>
               </mat-form-field>
@@ -73,7 +73,7 @@
               </div>
             </div>
 
-        </ng-container>
+        </ng-container> -->
         <div fxLayout="row">
             <mat-form-field appearance="outline" fxFlex="50">
                 <mat-label>Schedule Date Time</mat-label>

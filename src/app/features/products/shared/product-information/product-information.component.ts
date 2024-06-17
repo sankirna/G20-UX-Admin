@@ -24,8 +24,8 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
   venues: VenueModel[] = [];
   teams: TeamModel[] = [];
   files: File[] = []
-  products: ProductModel[] = [];  
-  productIds:number[] = [];
+  products: ProductModel[] = [];
+  productIds: number[] = [];
   constructor(
     private commonService: CommonService
     , private venueService: VenueService
@@ -39,15 +39,6 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
     this.loadFiles();
     this.loadVenues();
     this.loadTeams();
-
-    let productSearchModel = new ProductSearchModel();
-    productSearchModel.length = 10000;
-    productSearchModel.start = 0;
-    this.productService.list(productSearchModel).subscribe(data => {
-      if (data.data) {
-        this.products = data.data;
-      }
-    }); 
   }
 
   getPrimaryData() {
@@ -59,13 +50,7 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
   }
 
   get isReguler(): boolean {
-    let regular = false;
-    if (this.form.get("productTypeId")
-      && this.form.get("productTypeId")?.getRawValue() == 0) {
-      regular = true;
-    }
-    return regular;
-
+    return this.productService.isReguler(this.form);
   }
 
   get fileDataForm() {
@@ -105,6 +90,19 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
     });
   }
 
+  onProductTypeChange(productTypeEnum: EnumModel) {
+    if (productTypeEnum.value == 1
+      && this.productService.regularProducts
+      && this.productService.regularProducts.length<=0
+     ) {
+      this.productService.getRegularProducts().subscribe(data => {
+        if (data.data) {
+          this.productService.regularProducts=data.data;
+        }
+      });
+    }
+  }
+
   onVenueChange(venueId: number): void {
     if (!this.isEdit && venueId > 0) {
       this.venueService.get(venueId).subscribe(
@@ -119,7 +117,7 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
           console.error(error);
         }
       );
-    } 
+    }
     // this.form.get('stateId')?.reset();
     // this.form.get('cityId')?.reset();
     // if (countryId) {
@@ -151,29 +149,29 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
     this.fileDataForm.controls["id"].setValue(0);
   }
 
-  loadCategoriesByProduct(){
-    
-    this.productService.getByProducts(this.productIds.toString()).subscribe(
-      (response) => {
-        // this.model = response;
-        // this.buildForm();
-        //this.buildProductTicketCategoryMapModelForm(response);
-        var productTicketCategoryMapModels = this.productService.getProductTicketCategoryFromVenueTicketCategory(response.productTicketCategories);
-        this.buildProductTicketComboMapModelForm(productTicketCategoryMapModels);
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
+  // loadCategoriesByProduct() {
+   
+  //   this.productService.getByProducts(this.productIds.toString()).subscribe(
+  //     (response) => {
+  //       // this.model = response;
+  //       // this.buildForm();
+  //       //this.buildProductTicketCategoryMapModelForm(response);
+  //       var productTicketCategoryMapModels = this.productService.getProductTicketCategoryFromVenueTicketCategory(response.productTicketCategories);
+  //       this.buildProductTicketComboMapModelForm(productTicketCategoryMapModels);
+  //     },
+  //     (error) => {
+  //       console.error(error);
+  //     }
+  //   );
+  // }
 
-  buildProductTicketComboMapModelForm(productTicketCategoryMapModels: ProductTicketCategoryMapModel[]) {
-    var self = this;
-    var productTicketCategroiesFormArray = self.form.controls["productTicketCategories"] as FormArray;
-    productTicketCategroiesFormArray.setValue([]);
-    _.forEach(productTicketCategoryMapModels, function (value, key) {
-      let productTicketCategoryMapForm: FormGroup = self.productService.getProductTicketCategoryMapModelForm(value);
-      productTicketCategroiesFormArray.push(productTicketCategoryMapForm);
-    });
-  }
+  // buildProductTicketComboMapModelForm(productTicketCategoryMapModels: ProductTicketCategoryMapModel[]) {
+  //   var self = this;
+  //   var productTicketCategroiesFormArray = self.form.controls["productTicketCategories"] as FormArray;
+  //   productTicketCategroiesFormArray.setValue([]);
+  //   _.forEach(productTicketCategoryMapModels, function (value, key) {
+  //     let productTicketCategoryMapForm: FormGroup = self.productService.getProductTicketCategoryMapModelForm(value);
+  //     productTicketCategroiesFormArray.push(productTicketCategoryMapForm);
+  //   });
+  // }
 }

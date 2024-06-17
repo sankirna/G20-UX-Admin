@@ -17,6 +17,13 @@
                 <button mat-button mat-raised-button color="primary" matStepperNext>Next</button>
               </div>
             </mat-step>
+            <mat-step label="Add/Remove Team" *ngIf="isCombo">
+              <app-product-combo-team  [form]="form" [forms]="productCombosForm" *ngIf="productService.regularProducts.length>0"></app-product-combo-team>
+              <div fxLayout="row" fxFlex="100" fxLayoutAlign="end end" fxLayoutGap="10px">
+                  <button mat-button mat-raised-button color="primary" matStepperPrevious>Back</button>
+                  <button mat-button mat-raised-button color="primary" matStepperNext>Next</button>
+              </div>
+          </mat-step>
             <mat-step label="Ticket Conffiguration" >
               <app-product-ticket-category-list
                 [forms]="productTicketCategoriesForm"></app-product-ticket-category-list>

@@ -7,6 +7,7 @@ import { ProductTicketCategoryMapModel } from "./product-ticket-category-map.mod
 // This class is used for searching products with specific criteria.
 export class ProductSearchModel extends BaseSearchModel {
   name: string | undefined = "";
+  productTypeId: number | undefined ;
 }
 
 // This class represents a product.
@@ -30,3 +31,6 @@ export class ProductModel {
 // This class represents a paged list of products.
 export class ProductListModel extends BasePagedListModel<ProductModel> {
 }
+
+
+
