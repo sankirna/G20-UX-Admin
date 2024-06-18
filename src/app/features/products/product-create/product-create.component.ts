@@ -131,6 +131,8 @@ export class ProductCreateComponent implements OnInit {
     this.productService.get(this.id).subscribe(
       (response) => {
         this.model = response;
+        this.model.startDateTime = this.removeTimezoneOffset(response.startDateTime);
+        this.model.endDateTime = this.removeTimezoneOffset(response.endDateTime);
         this.fileName= this.model.file;
         this.buildForm();
       },
@@ -139,7 +141,21 @@ export class ProductCreateComponent implements OnInit {
       }
     );
   }
-
+   removeTimezoneOffset(dateTimeString:any) {
+    // Create a new Date object from the input string
+    const date = new Date(dateTimeString);
+  
+    // Get the date and time parts
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+  
+    // Format the date and time without timezone offset
+    return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+  }
   onSubmit() {
 
     if (this.isValid()) {

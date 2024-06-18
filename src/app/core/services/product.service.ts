@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { PagedListModel } from 'src/app/models/base-paged-list.model';
 import { FileUploadRequestModel } from 'src/app/models/file.model';
 import { ProductModel, ProductSearchModel } from 'src/app/models/product.model';
@@ -91,7 +91,7 @@ export class ProductService {
       fileId: [model.fileId],
       productTicketCategories: this.fb.array([]),
       productCombos: this.fb.array([])
-    });
+    }, { validator: dateTimeRangeValidator('startDateTime', 'endDateTime') });
     if (!model.file) {
       model.file = new FileUploadRequestModel();
     }
@@ -155,4 +155,29 @@ export class ProductService {
   }
 
 
+}
+export function dateTimeRangeValidator(startControlName: string, endControlName: string): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const formGroup = control as FormGroup;
+    const startControl = formGroup.controls[startControlName];
+    const endControl = formGroup.controls[endControlName];
+
+    if (startControl && endControl) {
+      const startDateTime = new Date(startControl.value);
+      const endDateTime = new Date(endControl.value);
+
+      if (endDateTime < startDateTime) {
+        endControl.setErrors({ dateTimeRange: true });
+        return { dateTimeRange: true };
+      } else {
+        if (endControl.errors && endControl.errors['dateTimeRange']) {
+          delete endControl.errors['dateTimeRange'];
+          if (!Object.keys(endControl.errors).length) {
+            endControl.setErrors(null);
+          }
+        }
+      }
+    }
+    return null;
+  };
 }

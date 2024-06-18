@@ -43,18 +43,26 @@
                 </mat-form-field>
             </div>
             <div fxLayout="row" fxLayoutGap="10px">
-                <mat-form-field appearance="outline" fxFlex="25">
+                <mat-form-field appearance="outline" floatLabel="auto">
+                    <mat-label>From Date</mat-label>
+                    <input type="datetime-local" matInput name="fromTime"   formControlName="startDateTime">
+                </mat-form-field>
+                <mat-form-field appearance="outline" floatLabel="auto">
+                    <mat-label>From Date</mat-label>
+                    <input type="datetime-local" matInput name="toTime"  formControlName="endDateTime">
+                </mat-form-field>
+                <!-- <mat-form-field appearance="outline" fxFlex="25">
                     <mat-label>Start Date Time</mat-label>
                     <input matInput [matDatepicker]="startDateTimepicker" formControlName="startDateTime">
                     <mat-datepicker-toggle matSuffix [for]="startDateTimepicker"></mat-datepicker-toggle>
                     <mat-datepicker #startDateTimepicker></mat-datepicker>
-                </mat-form-field>
+                </mat-form-field> 
                 <mat-form-field appearance="outline" fxFlex="25">
                     <mat-label>End Date Time</mat-label>
                     <input matInput [matDatepicker]="endDateTimepicker" formControlName="endDateTime">
                     <mat-datepicker-toggle matSuffix [for]="endDateTimepicker"></mat-datepicker-toggle>
                     <mat-datepicker #endDateTimepicker></mat-datepicker>
-                </mat-form-field>
+                </mat-form-field>-->
             </div>
         </ng-container>
 

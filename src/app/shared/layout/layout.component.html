@@ -8,9 +8,7 @@
     </button>
 
     <a class="navbar-brand" [routerLink]="['/']" matTooltip="Home">
-      <h1>
-      G20
-      </h1>
+      <img src="../../../../assets/images/GT20-LOGO.png" width="50">
     </a>
 
     <span class="navbar-spacer"></span>
@@ -67,44 +65,56 @@
           </mat-icon>
           <p mat-line> Dashboard </p>
         </a>
+        <mat-expansion-panel [class.mat-elevation-z0]="true">
+          <mat-expansion-panel-header>
+            Product
+          </mat-expansion-panel-header>
+          <mat-nav-list>
+            <a mat-list-item [routerLink]="['/ticketcategories/list']" routerLinkActive="active">
+              <mat-icon mat-list-icon>
+                category
+              </mat-icon>
+              <p mat-line> Ticket Categories </p>
+            </a>
+            <a mat-list-item [routerLink]="['/venues']" routerLinkActive="active">
+              <mat-icon mat-list-icon>
+                pin_drop
+              </mat-icon>
+              <p mat-line> Venue </p>
+            </a>
+            <a mat-list-item [routerLink]="['/teams/list']" routerLinkActive="active">
+              <mat-icon mat-list-icon>
+                people
+              </mat-icon>
+              <p mat-line> Teams </p>
+            </a>
+            <a mat-list-item [routerLink]="['/products/list']" routerLinkActive="active">
+              <mat-icon mat-list-icon>
+                Product List
+              </mat-icon>
+              <p mat-line> Products </p>
+            </a>
+
+          </mat-nav-list>
+        </mat-expansion-panel>
         <a mat-list-item [routerLink]="['/users/list']" routerLinkActive="active">
           <mat-icon mat-list-icon>
             people
           </mat-icon>
           <p mat-line> Users </p>
         </a>
-        <a mat-list-item [routerLink]="['/ticketcategories/list']" routerLinkActive="active">
-          <mat-icon mat-list-icon>
-            Ticket Category
-          </mat-icon>
-          <p mat-line> Ticket Categories </p>
-        </a>
+
         <!-- <a mat-list-item [routerLink]="['/categories/list']" routerLinkActive="active">
           <mat-icon mat-list-icon>
             Product Category
           </mat-icon>
           <p mat-line> Product Categories </p>
         </a> -->
-        <a mat-list-item [routerLink]="['/venues']" routerLinkActive="active">
-          <mat-icon mat-list-icon>
-            Venue
-          </mat-icon>
-          <p mat-line> Venue </p>
-        </a>
-        <a mat-list-item [routerLink]="['/teams/list']" routerLinkActive="active">
-          <mat-icon mat-list-icon>
-            people
-          </mat-icon>
-          <p mat-line> Teams </p>
-        </a>
 
-        <a mat-list-item [routerLink]="['/products/list']" routerLinkActive="active">
-          <mat-icon mat-list-icon>
-            Product
-          </mat-icon>
-          <p mat-line> Products </p>
-        </a>
-       
+        
+
+        
+
         <!-- <a mat-list-item [routerLink]="['/subcategories/list']" routerLinkActive="active">
           <mat-icon mat-list-icon>
             Ticket-Category
