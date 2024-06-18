@@ -18,7 +18,7 @@ export class TicketCategoryListComponent implements OnInit {
   searchModel: TicketCategorySearchModel = new TicketCategorySearchModel();
   paggerModel: PaggerModel = new PaggerModel();
   list: TicketCategoryModel[] = [];
-  displayedColumns: string[] = ['Name', 'Description', 'Actions'];
+  displayedColumns: string[] = ['Name','Logo', 'Description', 'Actions'];
   dataSource: MatTableDataSource<TicketCategoryModel>;
 
   constructor(private ticketCategoryService: TicketCategoryService

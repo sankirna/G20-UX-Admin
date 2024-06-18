@@ -49,6 +49,9 @@ export class FileUploadComponent {
   @Input() files: File[] = []
 
   @Input() fileModels: FileUploadRequestModel[] = [];
+  @Input() fileModel: FileUploadRequestModel| undefined;
+  @Input() showThumb : boolean=true;
+  @Input() showPreview : boolean=false;
   
   @Output() uploadFileEvent: EventEmitter<FileUploadRequestModel> = new EventEmitter();
   @Output() removeFileEvent: EventEmitter<FileUploadRequestModel> = new EventEmitter();

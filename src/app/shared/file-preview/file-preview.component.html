@@ -2,7 +2,7 @@
     <ng-container
         *ngIf="fileUploadRequestModel && (fileUploadRequestModel.url ||fileUploadRequestModel?.fileAsBase64) ">
         <img width="150" height="150"
-            src="{{fileUploadRequestModel.fileAsBase64 ?fileUploadRequestModel?.fileAsBase64: fileUploadRequestModel.url}}" />
+            src="{{fileUploadRequestModel.fileAsBase64 ? fileUploadRequestModel.fileAsBase64: fileUploadRequestModel.url}}" />
     </ng-container>
     <ng-container
         *ngIf="!fileUploadRequestModel || (!fileUploadRequestModel.url && !fileUploadRequestModel?.fileAsBase64)">
@@ -14,7 +14,7 @@
     <ng-template #template>
         <ng-container *ngIf="fileUploadRequestModel && (fileUploadRequestModel.url ||fileUploadRequestModel?.fileAsBase64) ">
             <img 
-            src="{{fileUploadRequestModel.fileAsBase64 ?fileUploadRequestModel?.fileAsBase64: fileUploadRequestModel.url}}" />
+            src="{{fileUploadRequestModel.fileAsBase64 ?fileUploadRequestModel.fileAsBase64: fileUploadRequestModel.url}}" />
            </ng-container>
         <ng-container
             *ngIf="!fileUploadRequestModel || (!fileUploadRequestModel.url && !fileUploadRequestModel?.fileAsBase64)">

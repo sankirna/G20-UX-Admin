@@ -25,9 +25,9 @@
 
           <div fxLayout="row" fxLayoutGap="10px">
 
-            <app-mat-file-Upload [files]="files" (uploadFileEvent)="uploadFile($event)"
+            <app-mat-file-Upload [files]="files" [fileModel]="fileDataForm.getRawValue()" (uploadFileEvent)="uploadFile($event)"
               (removeFileEvent)="removeFile($event)"></app-mat-file-Upload>
-            <app-file-preview [showPreview]="true" [fileUploadRequestModel]="fileDataForm.getRawValue()"></app-file-preview>
+            
           </div>
           <br>
           <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
