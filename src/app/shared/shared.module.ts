@@ -14,6 +14,7 @@ import { ConfirmComponentDialogComponent } from './confirm-component-dialog/conf
 import { YearPickerComponent } from './year-picker/year-picker.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { NGX_MAT_DATE_FORMATS, NgxMatDateFormats, NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+import { FilePreviewComponent } from './file-preview/file-preview.component';
 
 
 const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
@@ -49,7 +50,8 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
         CustomPaginatorComponent,
         ConfirmComponentDialogComponent,
         YearPickerComponent,
-        FileUploadComponent
+        FileUploadComponent,
+        FilePreviewComponent
     ],
     exports: [
         FormsModule,
@@ -65,6 +67,7 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
         ConfirmComponentDialogComponent,
         YearPickerComponent,
         FileUploadComponent,
+        FilePreviewComponent,
         // NgxMatDatetimePickerModule,
         // NgxMatTimepickerModule,
         // NgxMatNativeDateModule,

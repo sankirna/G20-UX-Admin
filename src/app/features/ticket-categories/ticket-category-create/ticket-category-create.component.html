@@ -1,7 +1,7 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center none">
   <div fxFlex="95%">
     <mat-card>
-      <mat-card-content>
+      <mat-card-content *ngIf="form && form.get('name') ">
         <h2>Ticket Category {{isEdit?'Edit':'Create'}}</h2>
         <form [formGroup]="form">
           <div fxLayout="row" fxLayoutAlign="end end">
@@ -15,25 +15,24 @@
                 Name is required
               </mat-error>
             </mat-form-field>
-           
-           
+
+
             <mat-form-field appearance="outline" fxFlex="50">
               <mat-label>Description</mat-label>
               <input matInput placeholder="Description" formControlName="description">
             </mat-form-field>
           </div>
-          
+
           <div fxLayout="row" fxLayoutGap="10px">
-            <img width="150" height="150" src="{{fileName.url}}" *ngIf="fileName.url" > 
-            <img width="150" height="150" src="{{defaulturl}}" *ngIf="!fileName.url"> 
-            <!-- <mat-label>File</mat-label> -->
-            
-            <app-mat-file-Upload [files]="files" (uploadFileEvent)="uploadFile($event)" (removeFileEvent)="removeFile($event)"></app-mat-file-Upload>
+
+            <app-mat-file-Upload [files]="files" (uploadFileEvent)="uploadFile($event)"
+              (removeFileEvent)="removeFile($event)"></app-mat-file-Upload>
+            <app-file-preview [showPreview]="true" [fileUploadRequestModel]="fileDataForm.getRawValue()"></app-file-preview>
           </div>
           <br>
           <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
             <button mat-raised-button color="warn" (click)="gotoList()">Cancel</button>
-            <button mat-raised-button color="primary"  (click)="onSubmit()">{{isEdit?'Update':'Create'}}</button>
+            <button mat-raised-button color="primary" (click)="onSubmit()">{{isEdit?'Update':'Create'}}</button>
           </div>
         </form>
       </mat-card-content>

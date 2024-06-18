@@ -35,6 +35,7 @@ export class FileService {
             fileSize: [model.fileSize],
             fileType: [model.fileType],
             fileAsBase64: [model.fileAsBase64],
+            url: [model.url],
         });
         return form;
     }

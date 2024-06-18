@@ -28,7 +28,6 @@ export class TicketCategoryCreateComponent implements OnInit {
     , private ticketCategoryService: TicketCategoryService    
     , public fileService: FileService
     , private fb: FormBuilder) {
-    this.buildForm();
   }
 
   get isEdit(): boolean {
@@ -65,7 +64,6 @@ export class TicketCategoryCreateComponent implements OnInit {
       name: [this.model.name, Validators.required],
       description: [this.model.description],
     });
-    
     this.form.addControl("file", this.fileService.getForm(this.model.file));
     if(this.model.file && this.model.file.fileName){
       this.files.push( new File([],this.model.file.fileName, {}))
@@ -80,12 +78,14 @@ export class TicketCategoryCreateComponent implements OnInit {
     this.fileDataForm.controls["fileName"].setValue(event.fileName);
     this.fileDataForm.controls["fileAsBase64"].setValue(event.fileAsBase64);
     this.fileDataForm.controls["id"].setValue(0);
+    this.fileDataForm.controls["url"].setValue("");
   }
 
   removeFile(event: FileUploadRequestModel){
     this.fileDataForm.controls["fileName"].setValue("");
     this.fileDataForm.controls["fileAsBase64"].setValue("");
     this.fileDataForm.controls["id"].setValue(0);
+    this.fileDataForm.controls["url"].setValue("");
   }
 
   getData() {

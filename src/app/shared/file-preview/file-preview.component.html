@@ -1,0 +1,24 @@
+<ng-container *ngIf="showThumb" #template>
+    <ng-container
+        *ngIf="fileUploadRequestModel && (fileUploadRequestModel.url ||fileUploadRequestModel?.fileAsBase64) ">
+        <img width="150" height="150"
+            src="{{fileUploadRequestModel.fileAsBase64 ?fileUploadRequestModel?.fileAsBase64: fileUploadRequestModel.url}}" />
+    </ng-container>
+    <ng-container
+        *ngIf="!fileUploadRequestModel || (!fileUploadRequestModel.url && !fileUploadRequestModel?.fileAsBase64)">
+        <img width="150" height="150" src="{{defaulturl}}" />
+    </ng-container>
+</ng-container>
+<ng-container *ngIf="showPreview">
+    <button mat-raised-button color="primary" (click)="openDialog(template)">Open my dialog</button>
+    <ng-template #template>
+        <ng-container *ngIf="fileUploadRequestModel && (fileUploadRequestModel.url ||fileUploadRequestModel?.fileAsBase64) ">
+            <img 
+            src="{{fileUploadRequestModel.fileAsBase64 ?fileUploadRequestModel?.fileAsBase64: fileUploadRequestModel.url}}" />
+           </ng-container>
+        <ng-container
+            *ngIf="!fileUploadRequestModel || (!fileUploadRequestModel.url && !fileUploadRequestModel?.fileAsBase64)">
+            <img src="{{defaulturl}}" />
+        </ng-container>
+    </ng-template>
+</ng-container>
