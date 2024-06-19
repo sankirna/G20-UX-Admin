@@ -2,8 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './core/guards/auth.guard';
+import { QrCodeGeneratorComponent } from './shared/qr-code-generator/qr-code-generator.component';
+import { QrCodeScannerComponent } from './shared/qr-code-scanner/qr-code-scanner.component';
 
 const appRoutes: Routes = [
+  { path: 'scanner', component: QrCodeScannerComponent },
+  { path: 'generator', component: QrCodeGeneratorComponent },
   {
     path: 'auth',
     loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule),
