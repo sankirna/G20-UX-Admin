@@ -18,7 +18,7 @@ export class TeamListComponent implements OnInit {
   searchModel: TeamSearchModel = new TeamSearchModel();
   paggerModel: PaggerModel = new PaggerModel();
   list: TeamModel[] = [];
-  displayedColumns: string[] = ['Name', 'ShortName', 'Actions'];
+  displayedColumns: string[] = ['Name','Logo', 'ShortName', 'Actions'];
   dataSource: MatTableDataSource<TeamModel>;
 
   constructor(private teamService: TeamService

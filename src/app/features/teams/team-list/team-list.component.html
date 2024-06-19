@@ -18,13 +18,16 @@
 
                 </div>
                     <table mat-table [dataSource]="dataSource" matSort>
-
+                        
                         <!-- Code Column -->
                         <ng-container matColumnDef="Name">
                             <th mat-header-cell *matHeaderCellDef> Name </th>
                             <td mat-cell *matCellDef="let element"> {{element.name}} </td>
                         </ng-container>
-
+                        <ng-container matColumnDef="Logo">
+                            <th mat-header-cell *matHeaderCellDef> Logo </th>
+                            <td mat-cell *matCellDef="let element"> <app-file-preview [showThumb]="true"  [fileUploadRequestModel]="element.file"></app-file-preview> </td>
+                        </ng-container>
                         <ng-container matColumnDef="ShortName">
                             <th mat-header-cell *matHeaderCellDef> ShortName </th>
                             <td mat-cell *matCellDef="let element"> {{element.shortName}} </td>
