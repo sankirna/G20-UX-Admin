@@ -80,6 +80,7 @@ export class ProductService {
     let form: FormGroup = this.fb.group({
       id: [model.id],
       name: [model.name],
+      categoryId: [model.categoryId],
       productTypeId: [model.productTypeId, Validators.required],
       venueId: [model.venueId],
       team1Id: [model.team1Id],

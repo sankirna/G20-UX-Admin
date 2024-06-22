@@ -15,6 +15,7 @@ export class ProductModel {
   id: number | undefined = 0;
   name: string | undefined;
   productTypeId: number | undefined = 0;
+  categoryId: number | undefined;
   venueId: number | undefined;
   team1Id: number | undefined ;
   team2Id: number | undefined ;

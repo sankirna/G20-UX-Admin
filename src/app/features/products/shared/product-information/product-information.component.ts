@@ -11,6 +11,8 @@ import * as _ from 'lodash';
 import { ProductTicketCategoryMapModel } from 'src/app/models/product-ticket-category-map.model';
 import { ProductService } from 'src/app/core/services/product.service';
 import { ProductModel, ProductSearchModel } from 'src/app/models/product.model';
+import { CategoryService } from 'src/app/core/services/category.service';
+import { CategoryModel, CategorySearchModel } from 'src/app/models/category.model';
 
 @Component({
   selector: 'app-product-information',
@@ -23,6 +25,7 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
   productTypes: EnumModel[] | undefined = [];
   venues: VenueModel[] = [];
   teams: TeamModel[] = [];
+  categories: CategoryModel[] = [];
   files: File[] = []
   products: ProductModel[] = [];
   productIds: number[] = [];
@@ -31,6 +34,7 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
     , private venueService: VenueService
     , private productService: ProductService
     , private teamService: TeamService
+    , private categoryService: CategoryService
   ) {
   }
 
@@ -39,6 +43,7 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
     this.loadFiles();
     this.loadVenues();
     this.loadTeams();
+    this.loadCategories();
   }
 
   getPrimaryData() {
@@ -86,6 +91,16 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
     this.teamService.list(teamSearchModel).subscribe(data => {
       if (data.data) {
         this.teams = data.data;
+      }
+    });
+  }
+  loadCategories() {
+    let categoryModel = new CategorySearchModel();
+    categoryModel.length = 10000;
+    categoryModel.start = 0;
+    this.categoryService.list(categoryModel).subscribe(data => {
+      if (data.data) {
+        this.categories = data.data;
       }
     });
   }

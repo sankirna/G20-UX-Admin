@@ -1,5 +1,6 @@
 <div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="space-around ">
     <form [formGroup]="form">
+        
         <div fxLayout="row" fxLayoutGap="10px">
             <mat-form-field appearance="outline" fxFlex="50">
                 <mat-label>Name</mat-label>
@@ -14,6 +15,13 @@
                         {{item.key}}</mat-button-toggle>
                 </mat-button-toggle-group>
             </div>
+            <mat-form-field appearance="outline" *ngIf="categories.length > 0" fxFlex="25">
+                <mat-label>Categories</mat-label>
+                <mat-select formControlName="categoryId">
+                    <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name
+                        }}</mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
         <ng-container *ngIf="isReguler">
             <div fxLayout="row" fxLayoutAlign="start" *ngIf="venues.length > 0">

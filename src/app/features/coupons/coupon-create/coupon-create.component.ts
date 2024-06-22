@@ -19,8 +19,19 @@ export class CouponCreateComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   model: CouponModel | undefined;
   couponCalculateTypes: EnumModel[] | undefined = [];
+  QuantityOptions: any[] | undefined = [{
+    "key": "Yes",
+    "value": true,
+    "description": "Is coupon apply by quantity."
+},
+{
+    "key": "No",
+    "value": false,
+    "description": "Is coupon apply by quantity."
+}];
   id: number = 0;
   submitted: boolean=false;
+  viewMinQuantity: boolean=false;
   constructor(
       private router: Router
     , private route: ActivatedRoute
@@ -58,6 +69,8 @@ export class CouponCreateComponent implements OnInit {
     this.form = this.fb.group({
       id: [this.model.id],
       code: [this.model.code, Validators.required],
+      isQuantity: [this.model.isQuantity],
+      minimumQuantity: [this.model.minimumQuantity],
       typeId: [this.model.typeId, Validators.required],
       amount: [this.model.amount, Validators.required],
       expirationDate: [this.model.expirationDate]
@@ -107,10 +120,14 @@ export class CouponCreateComponent implements OnInit {
     }
   }
 
-  onClear() {
-
-  }
+  onClear() {}
   gotoList(){
     this.router.navigateByUrl('/coupons/list');
+  }
+  onQuantityChange(event: any): void {
+    if(event.value==false){
+      this.viewMinQuantity=false;
+      this.form.controls['minimumQuantity'].setValue(0);
+    }else{this.viewMinQuantity=true;}
   }
 }

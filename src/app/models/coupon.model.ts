@@ -11,6 +11,8 @@ export class CouponSearchModel extends BaseSearchModel {
 export class CouponModel {
   id: number | undefined=0;
   code: string | undefined;
+  isQuantity: boolean | undefined=false;
+  minimumQuantity: number | undefined;
   amount: number | undefined = 0;
   typeId: number | undefined = 0;
   typeValue: string | undefined ;

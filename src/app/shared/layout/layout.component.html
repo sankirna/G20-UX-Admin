@@ -70,6 +70,12 @@
             Product
           </mat-expansion-panel-header>
           <mat-nav-list>
+            <a mat-list-item [routerLink]="['/categories/list']" routerLinkActive="active">
+              <mat-icon mat-list-icon>
+                Product Category
+              </mat-icon>
+              <p mat-line> Product Categories </p>
+            </a>
             <a mat-list-item [routerLink]="['/ticketcategories/list']" routerLinkActive="active">
               <mat-icon mat-list-icon>
                 category

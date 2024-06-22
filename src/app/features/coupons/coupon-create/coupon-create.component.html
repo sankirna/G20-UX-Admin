@@ -8,7 +8,7 @@
             <button mat-raised-button color="primary" (click)="gotoList()">List</button>
           </div>
           <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="30px">
-            <mat-form-field appearance="outline"  fxFlex="50">
+            <mat-form-field appearance="outline" fxFlex="50">
               <mat-label>Code</mat-label>
               <input matInput placeholder="Code" formControlName="code">
               <mat-error id="requiredUserError" *ngIf="form.controls['code'].hasError('required') && submitted">
@@ -16,8 +16,23 @@
               </mat-error>
             </mat-form-field>
           </div>
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="30px">
+            <div fxFlex="30" fxLayoutGap="30px">
+              <mat-label>Apply on Quantity</mat-label>
+              <mat-button-toggle-group multiple=false formControlName="isQuantity">
+                <mat-button-toggle *ngFor="let item of QuantityOptions;" [value]="item.value"
+                  (change)="onQuantityChange($event)">
+                  {{item.key}}</mat-button-toggle>
+              </mat-button-toggle-group>
+              <!-- <input formControlName="isQuantity" type="checkbox"> -->
+            </div>
+            <mat-form-field appearance="outline" fxFlex="30" *ngIf="viewMinQuantity">
+              <mat-label>Minimum Quantity</mat-label>
+              <input type="number" matInput placeholder="Minimum Quantity" formControlName="minimumQuantity">
+            </mat-form-field>
+          </div>
           <div fxLayout="row" fxLayoutGap="0px">
-            <div fxLayout="column" >
+            <div fxFlex="30" fxLayoutGap="30px">
               <mat-label>Type</mat-label>
               <mat-button-toggle-group *ngIf="couponCalculateTypes" multiple=false formControlName="typeId">
                 <mat-button-toggle *ngFor="let item of couponCalculateTypes;" [value]="item.value">
@@ -27,18 +42,18 @@
           </div>
           <br>
           <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="30px">
-            <mat-form-field appearance="outline" fxFlex="50"> 
+            <mat-form-field appearance="outline" fxFlex="50">
               <mat-label>Amount</mat-label>
               <input type="number" matInput placeholder="Amount" formControlName="amount">
             </mat-form-field>
-          <!-- </div>
+            <!-- </div>
             <div fxLayout="row" > -->
-              <mat-form-field appearance="outline" fxFlex="50">
-                <mat-label>Expiration Date</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="expirationDate">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="50">
+              <mat-label>Expiration Date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="expirationDate">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
           </div>
           <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
             <button mat-raised-button color="warn" (click)="gotoList()">Cancel</button>

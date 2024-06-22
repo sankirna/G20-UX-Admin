@@ -24,6 +24,15 @@
                             <th mat-header-cell *matHeaderCellDef> Code </th>
                             <td mat-cell *matCellDef="let element"> {{element.code}} </td>
                         </ng-container>
+                        <ng-container matColumnDef="ApplyOnQuantity">
+                            <th mat-header-cell *matHeaderCellDef> Apply On Quantity </th>
+                            <td mat-cell *matCellDef="let element"> {{element.isQuantity==true?'Yes':'No'}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="minimumQuantity">
+                            <th mat-header-cell *matHeaderCellDef> Minimum Quantity </th>
+                            <td mat-cell *matCellDef="let element"> {{element.minimumQuantity}} </td>
+                        </ng-container>
+
 
                         <ng-container matColumnDef="Type">
                             <th mat-header-cell *matHeaderCellDef> Type </th>

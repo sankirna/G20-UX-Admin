@@ -18,7 +18,7 @@ export class ProductListComponent implements OnInit {
   searchModel: ProductSearchModel = new ProductSearchModel();
   paggerModel: PaggerModel = new PaggerModel();
   list: ProductModel[] = [];
-  displayedColumns: string[] = ['Name','ProductType','VenueName','Team1','Team2','startDateTime', 'Actions'];
+  displayedColumns: string[] = ['Name','categoryName','ProductType','VenueName','Team1','Team2','startDateTime', 'Actions'];
   dataSource: MatTableDataSource<ProductModel>;
 
   constructor(private productService: ProductService
