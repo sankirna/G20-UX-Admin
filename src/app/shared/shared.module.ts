@@ -72,6 +72,7 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
         YearPickerComponent,
         FileUploadComponent,
         FilePreviewComponent,
+        QrCodeScannerComponent,
         // NgxMatDatetimePickerModule,
         // NgxMatTimepickerModule,
         // NgxMatNativeDateModule,

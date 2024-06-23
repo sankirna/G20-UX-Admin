@@ -155,6 +155,11 @@ export class ProductService {
     return this.http.post<any>(api,  model);
   }
 
+  getTicketCategoriesByProduct(productId: number) {
+    const api = 'Product/GetTicketCategoriesByProduct';
+    return this.http.post<any>(api, null, { params: { productId: productId } });
+  }
+
 
 }
 export function dateTimeRangeValidator(startControlName: string, endControlName: string): ValidatorFn {
