@@ -65,11 +65,18 @@
           </mat-icon>
           <p mat-line> Dashboard </p>
         </a>
+        <a mat-list-item [routerLink]="['/orders/list']" routerLinkActive="active">
+          <mat-icon mat-list-icon>
+            order
+          </mat-icon>
+          <p mat-line> Orders </p>
+        </a>
         <mat-expansion-panel [class.mat-elevation-z0]="true">
           <mat-expansion-panel-header>
             Product
           </mat-expansion-panel-header>
           <mat-nav-list>
+            
             <a mat-list-item [routerLink]="['/categories/list']" routerLinkActive="active">
               <mat-icon mat-list-icon>
                 Product Category

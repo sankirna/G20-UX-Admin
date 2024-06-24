@@ -88,6 +88,11 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'orders',
+    loadChildren: () => import('./features/orders/orders.module').then(m => m.OrdersModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'boarding-details',
     loadChildren: () => import('./features/boarding-details/boarding-details.module').then(m => m.BoardingDetailsModule),
     canActivate: [AuthGuard]

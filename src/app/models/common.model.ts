@@ -13,5 +13,6 @@ export class EnumModel {
     fileTypes: EnumModel[] | undefined;
     couponCalculateTypes: EnumModel[] | undefined;
     productTypes: EnumModel[] | undefined;
+    orderStatuses: EnumModel[] | undefined;
   }
   
