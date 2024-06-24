@@ -15,11 +15,15 @@ import { RoleService } from 'src/app/core/services/role.service';
 import { OrderService } from 'src/app/core/services/order.service';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { OrderInformationComponent } from './shared/order-information/order-information.component';
+import { OrderProductItemsComponent } from './shared/order-product-items/order-product-items.component';
 
 @NgModule({
   declarations: [
       OrderListComponent,
-      OrderDetailComponent
+      OrderDetailComponent,
+      OrderInformationComponent,
+      OrderProductItemsComponent
   ],
   imports: [
     CommonModule,

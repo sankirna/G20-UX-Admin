@@ -1,8 +1,11 @@
 import { BasePagedListModel } from "./base-paged-list.model";
 import { BaseSearchModel } from "./base-search.model";
+import { CategoryModel } from "./category.model";
 import { FileUploadRequestModel } from "./file.model";
 import { ProductCombosModel } from "./product-combos.model";
 import { ProductTicketCategoryMapModel } from "./product-ticket-category-map.model";
+import { TeamModel } from "./team.model";
+import { VenueModel } from "./venue.model";
 
 // This class is used for searching products with specific criteria.
 export class ProductSearchModel extends BaseSearchModel {
@@ -27,6 +30,10 @@ export class ProductModel {
   file: FileUploadRequestModel | undefined;
   productTicketCategories: ProductTicketCategoryMapModel[]=[];
   productCombos:ProductCombosModel[]=[];
+  team1Detail: TeamModel| undefined;
+  team2Detail: TeamModel| undefined;
+  venueDetail: VenueModel| undefined;
+  categoryDetail: CategoryModel| undefined;
 }
 
 // This class represents a paged list of products.
