@@ -1,5 +1,6 @@
 import { BasePagedListModel } from "./base-paged-list.model";
 import { BaseSearchModel } from "./base-search.model";
+import { ProductModel } from "./product.model";
 import { UserModel } from "./user.model";
 
 // This class is used for searching orders with specific criteria.
@@ -39,6 +40,18 @@ export class OrderDetailModel{
   createdDateTime: string | undefined;
   updatedDateTime: string | undefined;
   userDetail: UserModel| undefined;
+  items:OrderProductItemModel[]|undefined;
+}
+
+export class OrderProductItemModel{
+  id: number | undefined;
+  productId: number | undefined;
+  productTicketCategoryMapId: number | undefined;
+  quantity: number | undefined;
+  price: number | undefined;
+  total: number | undefined;
+  isOutofStock: number | undefined;
+  ProductDetail : ProductModel| undefined;
 }
 
 
