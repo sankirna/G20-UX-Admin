@@ -19,14 +19,9 @@
           <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="30px">
             <div fxFlex="30" fxLayoutGap="30px">
               <mat-label>Apply on Quantity</mat-label>
-              <mat-button-toggle-group multiple=false formControlName="isQuantity">
-                <mat-button-toggle *ngFor="let item of QuantityOptions;" [value]="item.value"
-                  (change)="onQuantityChange($event)">
-                  {{item.key}}</mat-button-toggle>
-              </mat-button-toggle-group>
-              <!-- <input formControlName="isQuantity" type="checkbox"> -->
+              <mat-checkbox formControlName="isQuantity">Apply on Quantity</mat-checkbox>
             </div>
-            <mat-form-field appearance="outline" fxFlex="30" *ngIf="viewMinQuantity">
+            <mat-form-field appearance="outline" fxFlex="30" *ngIf="form.get('isQuantity')?.getRawValue()">
               <mat-label>Minimum Quantity</mat-label>
               <input type="number" matInput placeholder="Minimum Quantity" formControlName="minimumQuantity">
             </mat-form-field>

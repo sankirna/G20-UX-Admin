@@ -31,7 +31,6 @@ export class CouponCreateComponent implements OnInit {
 }];
   id: number = 0;
   submitted: boolean=false;
-  viewMinQuantity: boolean=false;
   constructor(
       private router: Router
     , private route: ActivatedRoute
@@ -124,10 +123,5 @@ export class CouponCreateComponent implements OnInit {
   gotoList(){
     this.router.navigateByUrl('/coupons/list');
   }
-  onQuantityChange(event: any): void {
-    if(event.value==false){
-      this.viewMinQuantity=false;
-      this.form.controls['minimumQuantity'].setValue(0);
-    }else{this.viewMinQuantity=true;}
-  }
+  
 }
