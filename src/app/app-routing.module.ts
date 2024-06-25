@@ -98,6 +98,11 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'email-accounts',
+    loadChildren: () => import('./features/email-accounts/email-accounts.module').then(m => m.EmailAccountsModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'account',
     loadChildren: () => import('./features/account/account.module').then(m => m.AccountModule),
     canActivate: [AuthGuard]
