@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.titleService.setTitle('G20 - Login');
+        this.titleService.setTitle('GT 20 - Login');
         this.authenticationService.logout();
         this.createForm();
     }

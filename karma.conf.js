@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/angular-material-template'),
+      dir: require('path').join(__dirname, './coverage/gt20'),
       subdir: '.',
       reporters: [
         { type: 'html' },

@@ -2,7 +2,7 @@
 
  # Angular Material Starter Template
 
- ![Product Gif](https://github.com/umutesen/angular-material-template/blob/media/material-template-demo.gif)
+ ![Product Gif](https://github.com/umutesen/gt20/blob/media/material-template-demo.gif)
 
 
 Angular Material Starter Template is a free template built with Angular  and Angular Material. You can use it out of the box without having to change any file paths. Everything you need to start development on an Angular project is here.
