@@ -15,6 +15,7 @@ export class UserModel {
   phoneNumber: string | undefined;
   password: string | undefined;
   roleIds: number[] = [];
+  userTypeId:number=1;
 }
 
 

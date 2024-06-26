@@ -19,7 +19,7 @@ export class UserCreateComponent implements OnInit {
   roles: RoleModel[] = [];  
   id: number = 0;
   submitted = false;
-
+  userTypes: EnumModel[] | undefined = [];
   constructor(
       private router: Router
     , private route: ActivatedRoute
@@ -36,6 +36,7 @@ export class UserCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getPrimaryData();
     this.loadRoles() ;
     this.id = <number><unknown>this.route.snapshot.paramMap.get('id');
     if (this.isEdit) {
@@ -44,7 +45,9 @@ export class UserCreateComponent implements OnInit {
       this.buildForm();
     }
   }
-
+  getPrimaryData() {
+    this.userTypes = this.commonService.getPrimaryData()?.userTypes;
+  }
   loadRoles() {
     let roleSearchModel = new RoleSearchModel();
     roleSearchModel.length = 10000;
@@ -69,6 +72,7 @@ export class UserCreateComponent implements OnInit {
       phoneNumber: [this.model.phoneNumber],
       password: [this.model.password, Validators.required],
       roleIds: [this.model.roleIds],
+      userTypeId:[1]
     });
   }
 

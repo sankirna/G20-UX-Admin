@@ -18,7 +18,7 @@ export class UserListComponent implements OnInit {
   searchModel: UserSearchModel = new UserSearchModel();
   paggerModel: PaggerModel = new PaggerModel();
   list: UserModel[] = [];
-  displayedColumns: string[] = ['UserName', 'Email', 'PhoneNumber','Actions'];
+  displayedColumns: string[] = ['UserName', 'UserType','Email', 'PhoneNumber','Actions'];
   dataSource: MatTableDataSource<UserModel>;
 
   constructor(private userService: UserService

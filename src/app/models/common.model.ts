@@ -14,5 +14,6 @@ export class EnumModel {
     couponCalculateTypes: EnumModel[] | undefined;
     productTypes: EnumModel[] | undefined;
     orderStatuses: EnumModel[] | undefined;
+    userTypes: EnumModel[] | undefined;
   }
   
