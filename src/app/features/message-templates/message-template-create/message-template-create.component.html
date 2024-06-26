@@ -1,0 +1,37 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+  <div fxFlex="95%">
+    <mat-card>
+      <mat-card-content>
+        <h2>Email Account {{isEdit?'Edit':'Create'}}</h2>
+        <form [formGroup]="form">
+          <div fxLayout="row" fxLayoutAlign="end end">
+            <button mat-raised-button color="primary" (click)="gotoList()">List</button>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="30px">
+            <mat-form-field appearance="outline" fxFlex="50">
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="Name" formControlName="name" readonly>
+              <mat-error id="requiredMessageTemplateError" *ngIf="form.controls['name'].hasError('required') && submitted">
+                Name is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start" *ngIf="emailAccounts.length > 0">
+            <mat-form-field appearance="outline">
+              <mat-label>Email Account</mat-label>
+              <mat-select formControlName="emailAccountId" readonly>
+                <mat-option *ngFor="let emailAccount of emailAccounts" [value]="emailAccount.id">{{ emailAccount.email
+                  }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+            <button mat-raised-button color="warn" (click)="gotoList()">Cancel</button>
+            <button mat-raised-button color="primary" (click)="onSubmit()">{{isEdit?'Update':'Create'}}</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

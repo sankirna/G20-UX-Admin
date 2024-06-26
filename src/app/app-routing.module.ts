@@ -101,6 +101,11 @@ const appRoutes: Routes = [
     path: 'email-accounts',
     loadChildren: () => import('./features/email-accounts/email-accounts.module').then(m => m.EmailAccountsModule),
     canActivate: [AuthGuard]
+  }, 
+  {
+    path: 'message-templates',
+    loadChildren: () => import('./features/message-templates/message-templates.module').then(m => m.MessageTemplatesModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'account',
