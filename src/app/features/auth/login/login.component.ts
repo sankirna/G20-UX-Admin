@@ -33,8 +33,7 @@ export class LoginComponent implements OnInit {
         this.loginForm = new UntypedFormGroup({
             email: new UntypedFormControl(savedUserEmail, [Validators.required]),
             password: new UntypedFormControl('', Validators.required),
-            rememberMe: new UntypedFormControl(savedUserEmail !== null),
-            userTypeId:new UntypedFormControl(1)
+            rememberMe: new UntypedFormControl(savedUserEmail !== null) 
         });
     }
 

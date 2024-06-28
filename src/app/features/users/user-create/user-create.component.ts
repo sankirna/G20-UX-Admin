@@ -71,8 +71,7 @@ export class UserCreateComponent implements OnInit {
       email: [this.model.email, [Validators.required, Validators.email]],
       phoneNumber: [this.model.phoneNumber],
       password: [this.model.password, Validators.required],
-      roleIds: [this.model.roleIds],
-      userTypeId:[1]
+      roleIds: [this.model.roleIds] 
     });
   }
 
