@@ -10,7 +10,7 @@ import { OrderProductItemModel } from 'src/app/models/order.model';
 export class OrderProductItemsComponent {
   @Input() orderProductItems : OrderProductItemModel[]|undefined=[];
   dataSource: MatTableDataSource<OrderProductItemModel> | undefined;
-  displayedColumns: string[] = ['Name'];
+  displayedColumns: string[] = ['Date','Name','Category','Venue','Team1','Team2'];
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.orderProductItems);

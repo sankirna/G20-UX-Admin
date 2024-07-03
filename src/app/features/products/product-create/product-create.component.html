@@ -14,21 +14,22 @@
               <div>
               </div>
               <div fxFlex="grow" fxLayoutAlign="end end" fxLayoutGap="10px">
-                <button mat-button mat-raised-button color="primary" matStepperNext>Next</button>
+                <button mat-button mat-raised-button color="primary"  (click)="onFirstStepDone(stepper)" >Next</button>
               </div>
             </mat-step>
             <mat-step label="Add/Remove Team" *ngIf="isCombo">
-              <app-product-combo-team  [form]="form" [forms]="productCombosForm" *ngIf="productService.regularProducts.length>0"></app-product-combo-team>
+              <app-product-combo-team [form]="form" [forms]="productCombosForm"
+                *ngIf="productService.regularProducts.length>0"></app-product-combo-team>
               <div fxLayout="row" fxFlex="100" fxLayoutAlign="end end" fxLayoutGap="10px">
-                  <button mat-button mat-raised-button color="primary" matStepperPrevious>Back</button>
-                  <button mat-button mat-raised-button color="primary" matStepperNext>Next</button>
+                <button mat-button mat-raised-button color="primary" matStepperPrevious>Back</button>
+                <button mat-button mat-raised-button color="primary" matStepperNext>Next</button>
               </div>
-          </mat-step>
-            <mat-step label="Ticket Configuration" >
+            </mat-step>
+            <mat-step label="Ticket Configuration">
               <app-product-ticket-category-list
                 [forms]="productTicketCategoriesForm"></app-product-ticket-category-list>
 
-                <!-- <app-product-ticket-combo-list
+              <!-- <app-product-ticket-combo-list
                 [forms]="productTicketComboForm"></app-product-ticket-combo-list>  -->
               <br>
               <div fxLayout="row" fxFlex="100" fxLayoutAlign="end end" fxLayoutGap="10px">

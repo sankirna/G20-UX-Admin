@@ -1,5 +1,21 @@
-<div class="container" fxLayout="row" >
+<div class="container" fxLayout="row">
     <div>
         <div><span class="note">Order ID #: </span><span>{{model.id}}</span></div>
+
+        <ul>
+            <li><span class="note">Name: </span><span>{{model.name}}</span></li>
+            <li><span class="note">phoneNumber: </span><span>{{model.phoneNumber}}</span></li>
+            <li><span class="note">email: </span><span>{{model.email}}</span></li>
+            <li><span class="note">createdDateTime: </span><span>{{model.createdDateTime | date:'MM-dd-yyyy
+                    hh:mm:a'}}</span></li>
+            <li><span class="note">orderStatus: </span><span>{{model.orderStatus}}</span></li>
+            <li><span class="note">grossTotal: </span><span>{{model.grossTotal}}</span></li>
+            <li><span class="note">discount: </span><span>{{model.discount}}</span></li>
+            <li><span class="note">couponCode: </span><span>{{model.couponCode}}</span></li>
+            <li><span class="note">grandTotal: </span><span>{{model.grandTotal}}</span></li>
+        </ul>
+
+
+
     </div>
 </div>

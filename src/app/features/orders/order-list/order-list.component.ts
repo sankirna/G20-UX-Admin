@@ -21,7 +21,7 @@ export class OrderListComponent implements OnInit {
   paggerModel: PaggerModel = new PaggerModel();
   list: OrderDetailModel[] = [];
   orderStatuses: EnumModel[] |undefined =[];
-  displayedColumns: string[] = [ 'Email', 'PhoneNumber','Actions'];
+  displayedColumns: string[] = ['Name','Email', 'PhoneNumber','GrossTotal','Discount','GrandTotal','CreatedDate','Actions'];
   dataSource: MatTableDataSource<OrderDetailModel>;
 
   constructor(private orderService: OrderService

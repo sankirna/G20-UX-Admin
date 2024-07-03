@@ -17,6 +17,7 @@ import { ProductTicketCategoryMapModel } from 'src/app/models/product-ticket-cat
 import * as _ from 'lodash';
 import { environment } from 'src/environments/environment';
 import { ProductCombosModel } from 'src/app/models/product-combos.model';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-product-create',
@@ -34,6 +35,7 @@ export class ProductCreateComponent implements OnInit {
   isLoad: boolean = false;
   fileName :any='';
   defaulturl = environment.defaultUrl;
+  stepper: any;
 
   constructor(
     private router: Router
@@ -112,6 +114,7 @@ export class ProductCreateComponent implements OnInit {
   }
 
   isValid(): boolean {
+
     return this.form.valid;
   }
 
@@ -180,6 +183,9 @@ export class ProductCreateComponent implements OnInit {
         );
       }
 
+    }else {
+      this.form.markAllAsTouched();
+
     }
   }
 
@@ -189,4 +195,14 @@ export class ProductCreateComponent implements OnInit {
   gotoList() {
     this.router.navigateByUrl('/products/list');
   }
+  onFirstStepDone(stepper: MatStepper) {
+    if(!this.form .valid) {
+        // this should make all invalid fields light up in red
+        this.form.markAllAsTouched();
+        return;
+    }else{
+      stepper.next();
+    }
+    
+ }
 }
