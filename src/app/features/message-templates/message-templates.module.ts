@@ -1,10 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatRippleModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -14,6 +9,7 @@ import { MessageTemplateListComponent } from './message-template-list/message-te
 import { MessageTemplateCreateComponent } from './message-template-create/message-template-create.component';
 import { MessageTemplateService } from 'src/app/core/services/message-template.service';
 import { MessageTemplatesRoutingModule } from './message-templates-routing.module';
+import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   declarations: [
@@ -27,6 +23,8 @@ import { MessageTemplatesRoutingModule } from './message-templates-routing.modul
     ReactiveFormsModule,
     SharedModule,
     MessageTemplatesRoutingModule,
+    NgxEditorModule
+
   ],
   providers: [
       MessageTemplateService

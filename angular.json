@@ -82,13 +82,13 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "gt20:build:production"
+              "buildTarget": "gt20:build:production"
             },
             "development": {
-              "browserTarget": "gt20:build:development"
+              "buildTarget": "gt20:build:development"
             },
             "staging": {
-              "browserTarget": "gt20:build:staging"
+              "buildTarget": "gt20:build:staging"
             }
           },
           "defaultConfiguration": "development"
@@ -96,7 +96,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "gt20:build"
+            "buildTarget": "gt20:build"
           }
         },
         "test": {

@@ -25,7 +25,15 @@
               </mat-select>
             </mat-form-field>
           </div>
-
+          <!-- <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="30px" *ngIf="editor"> 
+            <mat-form-field appearance="outline" fxFlex="50">
+              <mat-label>Message body</mat-label>
+              <ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
+              </ngx-editor-menu>
+              <ngx-editor [editor]="editor" formControlName="body">
+              </ngx-editor>
+            </mat-form-field>
+          </div> -->
           <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
             <button mat-raised-button color="warn" (click)="gotoList()">Cancel</button>
             <button mat-raised-button color="primary" (click)="onSubmit()">{{isEdit?'Update':'Create'}}</button>
