@@ -169,6 +169,7 @@ export class TeamCreateComponent implements OnInit {
     this.logoFileDataForm.controls["fileName"].setValue("");
     this.logoFileDataForm.controls["fileAsBase64"].setValue("");
     this.logoFileDataForm.controls["id"].setValue(0);
+    this.logoFileDataForm.controls["url"].setValue("");
   }
 
   getData() {

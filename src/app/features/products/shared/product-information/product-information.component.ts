@@ -162,6 +162,7 @@ export class ProductInformationComponent implements OnInit, AfterViewInit {
     this.fileDataForm.controls["fileName"].setValue("");
     this.fileDataForm.controls["fileAsBase64"].setValue("");
     this.fileDataForm.controls["id"].setValue(0);
+    this.fileDataForm.controls["url"].setValue("");
   }
 
   // loadCategoriesByProduct() {

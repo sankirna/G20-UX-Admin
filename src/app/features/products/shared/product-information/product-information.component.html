@@ -106,8 +106,8 @@
             <mat-label>file</mat-label>
             <!-- <img width="150" height="150" src="{{fileName.url}}" *ngIf="fileName.url" > 
             <img width="150" height="150" src="{{defaulturl}}" *ngIf="!fileName.url">  -->
-            <app-mat-file-Upload [files]="files" (uploadFileEvent)="uploadFile($event)"
-                (removeFileEvent)="removeFile($event)"></app-mat-file-Upload>
+            <app-mat-file-Upload [files]="files" [fileModel]="fileDataForm.getRawValue()" (uploadFileEvent)="uploadFile($event)"
+                (removeFileEvent)="removeFile($event)" ></app-mat-file-Upload>
             </div> 
         </div>
         <div fxLayout="row" fxLayoutAlign="start">
