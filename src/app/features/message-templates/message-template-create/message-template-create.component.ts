@@ -21,6 +21,7 @@ export class MessageTemplateCreateComponent implements OnInit, NewType {
   emailAccounts: EmailAccountModel[] = [];  
   id: number = 0;
   submitted = false;
+  html: string="<p>Hello World!</p>";
 
   editor: Editor |undefined;
   toolbar: Toolbar = [
