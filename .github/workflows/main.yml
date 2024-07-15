@@ -23,7 +23,7 @@ jobs:
         run: npm install --force
 
       - name: Build Angular project
-        run: ng build --configuration=staging
+        run: ng build --configuration=staging --base-href /admin/
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
