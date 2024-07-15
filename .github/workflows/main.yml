@@ -1,0 +1,55 @@
+on:
+  push:
+    branches:
+      - main  # You can specify the branch you want to trigger the workflow on
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+          
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+        
+      - name: Install dependencies
+        run: npm install --force
+
+      - name: Build Angular project
+        run: ng build --configuration=staging
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: dist/
+
+  deploy:
+    runs-on: windows-latest
+    needs: build
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: dist/
+
+      - name: Deploy to FTP server
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: 13.60.47.237
+          username: gt20_ftp
+          password: Rinku@661988
+          local-dir: dist/gt20/
+          server-dir: /UX_ADMIN/
+          dangerous-clean-slate: true  # Delete all files in the server-dir before uploading
+
+    
